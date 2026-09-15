@@ -11,22 +11,23 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     services:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_DB: workflow_ci
+          POSTGRES_DB: app_ci
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 127.0.0.1:5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres -d workflow_ci"
+          --health-cmd "pg_isready -U postgres -d app_ci"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 20
     env:
-      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/workflow_ci
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/app_ci
       PAYLOAD_SECRET: ci-only-secret-not-used-outside-tests
       PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.cache/ms-playwright
     steps:
@@ -41,10 +42,10 @@ jobs:
           node-version: 22.17.0
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm run payload -- migrate
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test:int
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e

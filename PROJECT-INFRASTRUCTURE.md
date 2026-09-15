@@ -3,6 +3,7 @@
 **Status:** DRAFT
 **Project:** PG Deník
 **Owner:** David Brázda
+**Infrastructure bootstrap scope:** APPROVED 2026-09-15 — nový standardní projekt, GitHub/Coolify pipeline, oddělené DB, runtime migrace, healthcheck a preview; produkční DNS cutover není schválen
 
 ## Workspace and repository
 
