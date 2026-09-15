@@ -49,5 +49,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 
+# Import staging contains a full public-content snapshot; reports remain tracked.
+/artifacts/import/source-pages.json
+
 # local agent scratch data
 /.work/

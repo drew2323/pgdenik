@@ -1,0 +1,409 @@
+{
+  "method": "public XWiki REST children traversal",
+  "source": "https://www.pgdenik.cz",
+  "pages_count": 67,
+  "pages": [
+    {
+      "fullName": "Main.WebHome",
+      "parent": "",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Main/",
+      "title": "PG Deník.cz"
+    },
+    {
+      "fullName": "07 Closecalls.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/07%20Closecalls/",
+      "title": "07 Closecalls"
+    },
+    {
+      "fullName": "10 Technologie.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/10%20Technologie/",
+      "title": "10 Technologie"
+    },
+    {
+      "fullName": "Analyzy letu.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/",
+      "title": "02 Analýzy letů"
+    },
+    {
+      "fullName": "Mental Game.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/",
+      "title": "03 Mental Game"
+    },
+    {
+      "fullName": "Meteo.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/",
+      "title": "04 Meteo"
+    },
+    {
+      "fullName": "Software.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/",
+      "title": "05 Software"
+    },
+    {
+      "fullName": "Tipy a triky.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/",
+      "title": "01 Tipy a triky"
+    },
+    {
+      "fullName": "Zavody.WebHome",
+      "parent": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Zavody/",
+      "title": "08 Závody"
+    },
+    {
+      "fullName": "07 Closecalls.01 Přistání do šípku.WebHome",
+      "parent": "07 Closecalls.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/07%20Closecalls/01%20P%C5%99ist%C3%A1n%C3%AD%20do%20%C5%A1%C3%ADpku/",
+      "title": "01 Přistání do šípku"
+    },
+    {
+      "fullName": "Analyzy letu.-8\\.5\\.2021-Blatna.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/-8.5.2021-Blatna/",
+      "title": "&nbsp;&nbsp;8.5.2021 Blatná"
+    },
+    {
+      "fullName": "Analyzy letu.10\\.7\\.2021-Rana.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/10.7.2021-Rana/",
+      "title": "10.7.2021 Raná"
+    },
+    {
+      "fullName": "Analyzy letu.13\\.4\\.2021-Rana---zadekovana-termika-a-vitr.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/13.4.2021-Rana---zadekovana-termika-a-vitr/",
+      "title": "&nbsp;13.4.2021 Raná - zadekovaná termika a vítr"
+    },
+    {
+      "fullName": "Analyzy letu.14\\.7\\.2020 81km FAI Raná.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/14.7.2020%2081km%20FAI%20Ran%C3%A1/",
+      "title": "14.7.2020 81km FAI Raná"
+    },
+    {
+      "fullName": "Analyzy letu.16\\.8\\.2020 Všechov - 38km VP.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/16.8.2020%20V%C5%A1echov%20-%2038km%20VP/",
+      "title": "16.8.2020 Všechov - 38km VP"
+    },
+    {
+      "fullName": "Analyzy letu.1\\.8\\.2020 - Vrbeňák - Lysá Horá FAI 130km - bezobl - vrb.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/1.8.2020%20-%20Vrbe%C5%88%C3%A1k%20-%20Lys%C3%A1%20Hor%C3%A1%20FAI%20130km%20-%20bezobl%20-%20vrb/",
+      "title": "1.8.2020 - Vrbeňák - Lysá Hora 130FAI"
+    },
+    {
+      "fullName": "Analyzy letu.22\\.7\\.2020 19km Všechov.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/22.7.2020%2019km%20V%C5%A1echov/",
+      "title": "22.7.2020 19km Všechov"
+    },
+    {
+      "fullName": "Analyzy letu.24\\.3\\.-2021---Rana---Z---bezoblacna-a-inverze.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/24.3.-2021---Rana---Z---bezoblacna-a-inverze/",
+      "title": "&nbsp;24.3. 2021 - Raná - Z - bezoblačná a inverze"
+    },
+    {
+      "fullName": "Analyzy letu.24\\.4\\.-Rana-26FAI.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/24.4.-Rana-26FAI/",
+      "title": "&nbsp;24.4. 2021 Raná - Nakopávací let"
+    },
+    {
+      "fullName": "Analyzy letu.25\\.3\\.2021---Oblik.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/25.3.2021---Oblik/",
+      "title": "&nbsp;25.3.2021 - Oblík JZ a inverze"
+    },
+    {
+      "fullName": "Analyzy letu.25\\.8\\.2020 Vsechov.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/25.8.2020%20Vsechov/",
+      "title": "&nbsp;25.8.2020 Všechov s Karlosem"
+    },
+    {
+      "fullName": "Analyzy letu.26\\.03\\.2021-Oblik---JZ-7-11ms.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/26.03.2021-Oblik---JZ-7-11ms/",
+      "title": "&nbsp;26.03.2021 Oblík - JZ 7-11ms"
+    },
+    {
+      "fullName": "Analyzy letu.26\\.4\\.2021-certak---jaro-je-tu.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/26.4.2021-certak---jaro-je-tu/",
+      "title": "&nbsp;&nbsp;26.4.2021 Čerťák - jaro je tu"
+    },
+    {
+      "fullName": "Analyzy letu.27\\.7\\.2020 6km Raná - předčasné přistání.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/27.7.2020%206km%20Ran%C3%A1%20-%20p%C5%99ed%C4%8Dasn%C3%A9%20p%C5%99ist%C3%A1n%C3%AD/",
+      "title": "27.7.2020 6km Raná - předčasné přistání"
+    },
+    {
+      "fullName": "Analyzy letu.28\\.4\\.-Rana.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/28.4.-Rana/",
+      "title": "&nbsp;28.4.2021 Raná JV 3-5ms a bezoblačná"
+    },
+    {
+      "fullName": "Analyzy letu.3\\.9\\.2020 Oblík - nezachycení.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/3.9.2020%20Obl%C3%ADk%20-%20nezachycen%C3%AD/",
+      "title": "3.9.2020 Oblík - nezachycení"
+    },
+    {
+      "fullName": "Analyzy letu.4\\.4\\.2021-Oblik---Sever---skolacka-chyba.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/4.4.2021-Oblik---Sever---skolacka-chyba/",
+      "title": "4.4.2021 Oblík - Sever - školácká chyba"
+    },
+    {
+      "fullName": "Analyzy letu.5\\.8\\.2020 Raná 37FAI - zachyceni na potreti.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/5.8.2020%20Ran%C3%A1%2037FAI%20-%20zachyceni%20na%20potreti/",
+      "title": "&nbsp;5.8.2020 Raná 37FAI - zachycení na potřetí"
+    },
+    {
+      "fullName": "Analyzy letu.9\\.8\\.2020 Krupka - fullstall a velka lekce toceni.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/9.8.2020%20Krupka%20-%20fullstall%20a%20velka%20lekce%20toceni/",
+      "title": "&nbsp;9.8.2020 Krupka - fullstall a velka lekce toceni"
+    },
+    {
+      "fullName": "Analyzy letu.9\\.9\\.2020 Oblik - bezoblacne kopance.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/9.9.2020%20Oblik%20-%20bezoblacne%20kopance/",
+      "title": "&nbsp;9.9.2020 Oblík - bezoblačné kopance"
+    },
+    {
+      "fullName": "Analyzy letu.Analýzy letů Tenerife 2020.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Anal%C3%BDzy%20let%C5%AF%20Tenerife%202020/",
+      "title": "Analýzy letů Tenerife 2021"
+    },
+    {
+      "fullName": "Analyzy letu.Bassano-03-2021.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Bassano-03-2021/",
+      "title": "Bassano 03/2021"
+    },
+    {
+      "fullName": "Analyzy letu.Lety-2021-a-zapisky-k-nim.WebHome",
+      "parent": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Lety-2021-a-zapisky-k-nim/",
+      "title": "&nbsp;23.3. 2021 - Raná - nosná deka"
+    },
+    {
+      "fullName": "Mental Game.Práce s podvědomím.WebHome",
+      "parent": "Mental Game.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/Pr%C3%A1ce%20s%20podv%C4%9Bdom%C3%ADm/",
+      "title": "Práce s podvědomím"
+    },
+    {
+      "fullName": "Mental Game.Zdroje-pro-mental-game.WebHome",
+      "parent": "Mental Game.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/Zdroje-pro-mental-game/",
+      "title": "Zdroje pro mental game"
+    },
+    {
+      "fullName": "Meteo.Predpoveď-vs-Realita.WebHome",
+      "parent": "Meteo.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/",
+      "title": "Předpověď vs Realita"
+    },
+    {
+      "fullName": "Software.3D vizualizace během letu.WebHome",
+      "parent": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/3D%20vizualizace%20b%C4%9Bhem%20letu/",
+      "title": "3D vizualizace během letu"
+    },
+    {
+      "fullName": "Software.Jak obohatit tracklog pro analýzu.WebHome",
+      "parent": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Jak%20obohatit%20tracklog%20pro%20anal%C3%BDzu/",
+      "title": "Jak obohatit tracklog pro analýzu"
+    },
+    {
+      "fullName": "Software.Nápady.WebHome",
+      "parent": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/N%C3%A1pady/",
+      "title": "Nápady"
+    },
+    {
+      "fullName": "Software.Srovnání mobilních vario aplikací.WebHome",
+      "parent": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Srovn%C3%A1n%C3%AD%20mobiln%C3%ADch%20vario%20aplikac%C3%AD/",
+      "title": "Srovnání mobilních vario aplikací"
+    },
+    {
+      "fullName": "Software.Zobrazení okolních větroňů  v XCTracku.WebHome",
+      "parent": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Zobrazen%C3%AD%20okoln%C3%ADch%20v%C4%9Btro%C5%88%C5%AF%20%20v%20XCTracku/",
+      "title": "&nbsp;Zobrazení okolních kluzáků v XCTracku"
+    },
+    {
+      "fullName": "Tipy a triky.01 Příprava před letem.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/01%20P%C5%99%C3%ADprava%20p%C5%99ed%20letem/",
+      "title": "01 Příprava před letem"
+    },
+    {
+      "fullName": "Tipy a triky.02 Tréninkové úlohy.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/02%20Tr%C3%A9ninkov%C3%A9%20%C3%BAlohy/",
+      "title": "02 Tréninkové úlohy"
+    },
+    {
+      "fullName": "Tipy a triky.03 Zachycení a profil dne.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/03%20Zachycen%C3%AD%20a%20profil%20dne/",
+      "title": "03 Zachycení a profil dne"
+    },
+    {
+      "fullName": "Tipy a triky.04 Lokalizace stoupáků.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/04%20Lokalizace%20stoup%C3%A1k%C5%AF/",
+      "title": "04 Lokalizace dalšího stoupáku"
+    },
+    {
+      "fullName": "Tipy a triky.045 Dohledávání stoupáku v aktivní oblasti.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/045%20Dohled%C3%A1v%C3%A1n%C3%AD%20stoup%C3%A1ku%20v%20aktivn%C3%AD%20oblasti/",
+      "title": "045 Dohledávání stoupáku v aktivní oblasti"
+    },
+    {
+      "fullName": "Tipy a triky.05 Strategie během letu.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/05%20Strategie%20b%C4%9Bhem%20letu/",
+      "title": "05 Strategie během letu"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/",
+      "title": "15 Terény"
+    },
+    {
+      "fullName": "Tipy a triky.20 Technika pilotáže.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/20%20Technika%20pilot%C3%A1%C5%BEe/",
+      "title": "20 Technika pilotáže"
+    },
+    {
+      "fullName": "Tipy a triky.GH trénink + tipy.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/GH%20tr%C3%A9nink%20%2B%20tipy/",
+      "title": "09 GH trénink + tipy"
+    },
+    {
+      "fullName": "Tipy a triky.Kolapsy a aktivní pilotáž.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Kolapsy%20a%20aktivn%C3%AD%20pilot%C3%A1%C5%BE/",
+      "title": "08 Kolapsy a aktivní pilotáž"
+    },
+    {
+      "fullName": "Tipy a triky.Na přeskoku (on glide).WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Na%20p%C5%99eskoku%20%28on%20glide%29/",
+      "title": "07 Na přeskoku"
+    },
+    {
+      "fullName": "Tipy a triky.Ve stoupáku.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Ve%20stoup%C3%A1ku/",
+      "title": "06 Ve stoupáku"
+    },
+    {
+      "fullName": "Tipy a triky.Zajímavosti.WebHome",
+      "parent": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Zaj%C3%ADmavosti/",
+      "title": "11 Zajímavosti"
+    },
+    {
+      "fullName": "Analyzy letu.31\\.5\\.2021-certak-a-vetrne-FAI.WebHome",
+      "parent": "Analyzy letu.26\\.4\\.2021-certak---jaro-je-tu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/31.5.2021-certak-a-vetrne-FAI/",
+      "title": "&nbsp;&nbsp;31.5.2021 Čerťák a větrné FAI"
+    },
+    {
+      "fullName": "Meteo.Predpoveď-vs-Realita.14\\.4\\.2021-Rana---big-day-na-zafuk.WebHome",
+      "parent": "Meteo.Predpoveď-vs-Realita.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/14.4.2021-Rana---big-day-na-zafuk/",
+      "title": "Předpo vs Realita - 14.4.2021 Raná - big day na záfuk"
+    },
+    {
+      "fullName": "Meteo.Predpoveď-vs-Realita.16\\.4\\.2021-Greifenburg---big-day.WebHome",
+      "parent": "Meteo.Predpoveď-vs-Realita.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/16.4.2021-Greifenburg---big-day/",
+      "title": "Greifenburg - jak identifikovat big day"
+    },
+    {
+      "fullName": "Meteo.Predpoveď-vs-Realita.Timelapsy kumulů.WebHome",
+      "parent": "Meteo.Predpoveď-vs-Realita.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/Timelapsy%20kumul%C5%AF/",
+      "title": "Timelapsy kumulů"
+    },
+    {
+      "fullName": "Tipy a triky.30 Teorie.WebHome",
+      "parent": "Tipy a triky.03 Zachycení a profil dne.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/30%20Teorie/",
+      "title": "30 Teorie"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Alpské létání.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Alpsk%C3%A9%20l%C3%A9t%C3%A1n%C3%AD/",
+      "title": "Specifika alpského létání"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Antholz.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Antholz/",
+      "title": "Antholz"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Bassano.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Bassano/",
+      "title": "Bassano"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Kobala.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Kobala/",
+      "title": "Kobala"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Tenerife - popis terénu.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Tenerife%20-%20popis%20ter%C3%A9nu/",
+      "title": "Tenerife - popis terénu"
+    },
+    {
+      "fullName": "Tipy a triky.15 Terény.Vsechov.WebHome",
+      "parent": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Vsechov/",
+      "title": "Všechov"
+    },
+    {
+      "fullName": "Tipy a triky.20 Technika pilotáže.Wingovery.WebHome",
+      "parent": "Tipy a triky.20 Technika pilotáže.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/20%20Technika%20pilot%C3%A1%C5%BEe/Wingovery/",
+      "title": "Wingovery"
+    },
+    {
+      "fullName": "Tipy a triky.30 Teorie.Teorie vzniku stoupaku.WebHome",
+      "parent": "Tipy a triky.30 Teorie.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/30%20Teorie/Teorie%20vzniku%20stoupaku/",
+      "title": "05 Teorie vzniku stoupaku"
+    }
+  ]
+}

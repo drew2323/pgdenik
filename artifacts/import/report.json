@@ -1,0 +1,464 @@
+{
+  "generatedAt": "2026-09-15T13:08:24.932Z",
+  "source": "https://www.pgdenik.cz",
+  "counts": {
+    "discovered": 67,
+    "imported": 67,
+    "skipped": 0,
+    "problem": 7
+  },
+  "reconciliation": {
+    "authoritativeSourceIDs": 67,
+    "discoveredSourceIDs": 67,
+    "traversalWarnings": [],
+    "fetchedSourceIDs": 67,
+    "missingFetchedIDs": [],
+    "destinationSourceIDs": 67
+  },
+  "entries": [
+    {
+      "sourceID": "07 Closecalls.01 Přistání do šípku.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/07%20Closecalls/01%20P%C5%99ist%C3%A1n%C3%AD%20do%20%C5%A1%C3%ADpku/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "07 Closecalls.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/07%20Closecalls/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "10 Technologie.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/10%20Technologie/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.-8\\.5\\.2021-Blatna.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/-8.5.2021-Blatna/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.1\\.8\\.2020 - Vrbeňák - Lysá Horá FAI 130km - bezobl - vrb.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/1.8.2020%20-%20Vrbe%C5%88%C3%A1k%20-%20Lys%C3%A1%20Hor%C3%A1%20FAI%20130km%20-%20bezobl%20-%20vrb/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.10\\.7\\.2021-Rana.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/10.7.2021-Rana/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.13\\.4\\.2021-Rana---zadekovana-termika-a-vitr.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/13.4.2021-Rana---zadekovana-termika-a-vitr/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.14\\.7\\.2020 81km FAI Raná.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/14.7.2020%2081km%20FAI%20Ran%C3%A1/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.16\\.8\\.2020 Všechov - 38km VP.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/16.8.2020%20V%C5%A1echov%20-%2038km%20VP/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.22\\.7\\.2020 19km Všechov.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/22.7.2020%2019km%20V%C5%A1echov/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.24\\.3\\.-2021---Rana---Z---bezoblacna-a-inverze.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/24.3.-2021---Rana---Z---bezoblacna-a-inverze/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.24\\.4\\.-Rana-26FAI.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/24.4.-Rana-26FAI/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.25\\.3\\.2021---Oblik.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/25.3.2021---Oblik/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.25\\.8\\.2020 Vsechov.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/25.8.2020%20Vsechov/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.26\\.03\\.2021-Oblik---JZ-7-11ms.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/26.03.2021-Oblik---JZ-7-11ms/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.26\\.4\\.2021-certak---jaro-je-tu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/26.4.2021-certak---jaro-je-tu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.27\\.7\\.2020 6km Raná - předčasné přistání.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/27.7.2020%206km%20Ran%C3%A1%20-%20p%C5%99ed%C4%8Dasn%C3%A9%20p%C5%99ist%C3%A1n%C3%AD/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.27\\.7\\.2020 6km Raná - předčasné přistání.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/27.7.2020%206km%20Ran%C3%A1%20-%20p%C5%99ed%C4%8Dasn%C3%A9%20p%C5%99ist%C3%A1n%C3%AD/",
+      "status": "problem",
+      "reason": "invalid-image:/xwiki/resources/icons/silk/error.png?cache-version=1603711510000"
+    },
+    {
+      "sourceID": "Analyzy letu.28\\.4\\.-Rana.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/28.4.-Rana/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.3\\.9\\.2020 Oblík - nezachycení.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/3.9.2020%20Obl%C3%ADk%20-%20nezachycen%C3%AD/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.31\\.5\\.2021-certak-a-vetrne-FAI.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/31.5.2021-certak-a-vetrne-FAI/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.4\\.4\\.2021-Oblik---Sever---skolacka-chyba.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/4.4.2021-Oblik---Sever---skolacka-chyba/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.5\\.8\\.2020 Raná 37FAI - zachyceni na potreti.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/5.8.2020%20Ran%C3%A1%2037FAI%20-%20zachyceni%20na%20potreti/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.9\\.8\\.2020 Krupka - fullstall a velka lekce toceni.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/9.8.2020%20Krupka%20-%20fullstall%20a%20velka%20lekce%20toceni/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.9\\.9\\.2020 Oblik - bezoblacne kopance.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/9.9.2020%20Oblik%20-%20bezoblacne%20kopance/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.Analýzy letů Tenerife 2020.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Anal%C3%BDzy%20let%C5%AF%20Tenerife%202020/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.Analýzy letů Tenerife 2020.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Anal%C3%BDzy%20let%C5%AF%20Tenerife%202020/",
+      "status": "problem",
+      "reason": "unsupported-element:video"
+    },
+    {
+      "sourceID": "Analyzy letu.Analýzy letů Tenerife 2020.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Anal%C3%BDzy%20let%C5%AF%20Tenerife%202020/",
+      "status": "problem",
+      "reason": "unsupported-element:video"
+    },
+    {
+      "sourceID": "Analyzy letu.Analýzy letů Tenerife 2020.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Anal%C3%BDzy%20let%C5%AF%20Tenerife%202020/",
+      "status": "problem",
+      "reason": "unsupported-element:video"
+    },
+    {
+      "sourceID": "Analyzy letu.Bassano-03-2021.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Bassano-03-2021/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.Lety-2021-a-zapisky-k-nim.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/Lety-2021-a-zapisky-k-nim/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Analyzy letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Analyzy%20letu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Main.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Main/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Mental Game.Práce s podvědomím.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/Pr%C3%A1ce%20s%20podv%C4%9Bdom%C3%ADm/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Mental Game.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Mental Game.Zdroje-pro-mental-game.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Mental%20Game/Zdroje-pro-mental-game/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Meteo.Predpoveď-vs-Realita.14\\.4\\.2021-Rana---big-day-na-zafuk.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/14.4.2021-Rana---big-day-na-zafuk/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Meteo.Predpoveď-vs-Realita.14\\.4\\.2021-Rana---big-day-na-zafuk.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/14.4.2021-Rana---big-day-na-zafuk/",
+      "status": "problem",
+      "reason": "unsupported-element:video"
+    },
+    {
+      "sourceID": "Meteo.Predpoveď-vs-Realita.16\\.4\\.2021-Greifenburg---big-day.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/16.4.2021-Greifenburg---big-day/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Meteo.Predpoveď-vs-Realita.Timelapsy kumulů.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/Timelapsy%20kumul%C5%AF/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Meteo.Predpoveď-vs-Realita.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/Predpove%C4%8F-vs-Realita/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Meteo.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Meteo/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.3D vizualizace během letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/3D%20vizualizace%20b%C4%9Bhem%20letu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.3D vizualizace během letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/3D%20vizualizace%20b%C4%9Bhem%20letu/",
+      "status": "problem",
+      "reason": "unsupported-iframe:https://player.vimeo.com/video/292254308"
+    },
+    {
+      "sourceID": "Software.Jak obohatit tracklog pro analýzu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Jak%20obohatit%20tracklog%20pro%20anal%C3%BDzu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.Nápady.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/N%C3%A1pady/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.Srovnání mobilních vario aplikací.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Srovn%C3%A1n%C3%AD%20mobiln%C3%ADch%20vario%20aplikac%C3%AD/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Software.Zobrazení okolních větroňů  v XCTracku.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Software/Zobrazen%C3%AD%20okoln%C3%ADch%20v%C4%9Btro%C5%88%C5%AF%20%20v%20XCTracku/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.01 Příprava před letem.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/01%20P%C5%99%C3%ADprava%20p%C5%99ed%20letem/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.02 Tréninkové úlohy.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/02%20Tr%C3%A9ninkov%C3%A9%20%C3%BAlohy/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.03 Zachycení a profil dne.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/03%20Zachycen%C3%AD%20a%20profil%20dne/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.04 Lokalizace stoupáků.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/04%20Lokalizace%20stoup%C3%A1k%C5%AF/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.045 Dohledávání stoupáku v aktivní oblasti.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/045%20Dohled%C3%A1v%C3%A1n%C3%AD%20stoup%C3%A1ku%20v%20aktivn%C3%AD%20oblasti/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.05 Strategie během letu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/05%20Strategie%20b%C4%9Bhem%20letu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Alpské létání.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Alpsk%C3%A9%20l%C3%A9t%C3%A1n%C3%AD/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Antholz.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Antholz/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Bassano.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Bassano/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Kobala.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Kobala/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Tenerife - popis terénu.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Tenerife%20-%20popis%20ter%C3%A9nu/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.Vsechov.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/Vsechov/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.15 Terény.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/15%20Ter%C3%A9ny/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.20 Technika pilotáže.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/20%20Technika%20pilot%C3%A1%C5%BEe/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.20 Technika pilotáže.Wingovery.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/20%20Technika%20pilot%C3%A1%C5%BEe/Wingovery/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.30 Teorie.Teorie vzniku stoupaku.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/30%20Teorie/Teorie%20vzniku%20stoupaku/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.30 Teorie.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/30%20Teorie/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.GH trénink + tipy.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/GH%20tr%C3%A9nink%20%2B%20tipy/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.Kolapsy a aktivní pilotáž.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Kolapsy%20a%20aktivn%C3%AD%20pilot%C3%A1%C5%BE/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.Na přeskoku (on glide).WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Na%20p%C5%99eskoku%20%28on%20glide%29/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.Ve stoupáku.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Ve%20stoup%C3%A1ku/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.Ve stoupáku.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Ve%20stoup%C3%A1ku/",
+      "status": "problem",
+      "reason": "invalid-link:https://www.serialcup.com/content/drifting-thermals-marko-hrgeti%C4%87ifting Thermals video lecture"
+    },
+    {
+      "sourceID": "Tipy a triky.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Tipy a triky.Zajímavosti.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Zaj%C3%ADmavosti/",
+      "status": "imported",
+      "reason": "created"
+    },
+    {
+      "sourceID": "Zavody.WebHome",
+      "sourceURL": "https://www.pgdenik.cz/xwiki/bin/view/Zavody/",
+      "status": "imported",
+      "reason": "created"
+    }
+  ]
+}

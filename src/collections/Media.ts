@@ -11,6 +11,7 @@ export const Media: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    { name: 'sourceURL', type: 'text', unique: true, index: true, admin: { readOnly: true } },
   ],
   upload: true,
 }

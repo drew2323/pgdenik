@@ -1,18 +1,24 @@
 import React from 'react'
 import './styles.css'
+import { Navigation } from '@/components/Navigation'
+import { getNavigation } from '@/lib/pages'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'Osobní paraglidingový deník — zkušenosti, analýzy letů a poznámky.',
+  title: { default: 'PG Deník', template: '%s — PG Deník' },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en">
+    <html lang="cs">
       <body>
-        <main>{children}</main>
+        <a className="skip-link" href="#obsah">
+          Přeskočit na obsah
+        </a>
+        <Navigation items={await getNavigation()} />
+        <main id="obsah">{children}</main>
       </body>
     </html>
   )
