@@ -68,6 +68,14 @@ describe('content model', () => {
   it('matches legacy XWiki view URLs without accepting lookalike paths', () => {
     const sourceURL = 'https://www.pgdenik.cz/xwiki/bin/view/Tipy%20a%20triky/Alpsk%C3%A9%20l%C3%A9t%C3%A1n%C3%AD/'
     expect(legacySegmentsMatchSourceURL(['Tipy a triky', 'Alpské létání'], sourceURL)).toBe(true)
+    // The App Router may deliver segments still percent-encoded (spaces and
+    // non-ASCII); these must normalise to the decoded source URL too.
+    expect(
+      legacySegmentsMatchSourceURL(
+        ['Tipy%20a%20triky', 'Alpsk%C3%A9%20l%C3%A9t%C3%A1n%C3%AD'],
+        sourceURL,
+      ),
+    ).toBe(true)
     expect(legacySegmentsMatchSourceURL(['Tipy a triky', 'Other'], sourceURL)).toBe(false)
     expect(legacySegmentsMatchSourceURL(['admin'], 'https://evil.test/xwiki/bin/view/admin/')).toBe(false)
   })

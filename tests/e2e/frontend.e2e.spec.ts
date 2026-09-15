@@ -42,7 +42,9 @@ test.describe('Frontend with deterministic CMS content', () => {
   })
 
   test('redirects a legacy XWiki URL to its current CMS path', async ({ page }) => {
-    const response = await page.goto('/xwiki/bin/view/Fixture/Child/')
+    // Use a space-containing legacy path: the real site's URLs contain spaces
+    // and non-ASCII characters, which must still redirect.
+    const response = await page.goto('/xwiki/bin/view/Fixture%20lang/Child%20page/')
     await expect(page).toHaveURL(new RegExp(`${fixture.childPath}$`))
     const redirected = response?.request().redirectedFrom()
     expect(redirected).not.toBeNull()

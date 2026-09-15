@@ -8,7 +8,7 @@ import type { Page } from '../../src/payload-types.js'
 
 export const fixture = {
   childPath: '/fixture-child',
-  childSourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Fixture/Child/',
+  childSourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Fixture lang/Child page/',
   parentPath: '/fixture-parent-unrelated',
   parentSourceURL: 'fixture://parent',
   mediaSourceURL: 'fixture://image',

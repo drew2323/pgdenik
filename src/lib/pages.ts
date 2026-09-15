@@ -12,9 +12,19 @@ export function legacySegmentsMatchSourceURL(segments: string[], sourceURL: stri
     const sourceSegments = decodeURIComponent(url.pathname.slice('/xwiki/bin/view/'.length))
       .split('/')
       .filter(Boolean)
+    // The App-Router catch-all may pass segments URL-encoded (e.g. spaces and
+    // non-ASCII) while the stored sourceURL is decoded here; normalize both
+    // sides before comparing so legacy URLs with spaces still redirect.
+    const decodedIncoming = segments.map((segment) => {
+      try {
+        return decodeURIComponent(segment)
+      } catch {
+        return segment
+      }
+    })
     return (
-      sourceSegments.length === segments.length &&
-      sourceSegments.every((segment, index) => segment === segments[index])
+      sourceSegments.length === decodedIncoming.length &&
+      sourceSegments.every((segment, index) => segment === decodedIncoming[index])
     )
   } catch {
     return false
