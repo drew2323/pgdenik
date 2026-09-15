@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -149,6 +151,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  sourceURL?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -160,6 +163,67 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  path: string;
+  /**
+   * Volitelný kratší název v navigaci.
+   */
+  menuTitle?: string | null;
+  parent?: (number | null) | Page;
+  order: number;
+  showInMenu: boolean;
+  sourceURL?: string | null;
+  content: (
+    | {
+        body: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'image';
+      }
+    | {
+        url: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'youtube';
+      }
+    | {
+        url: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'xcvid';
+      }
+  )[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -192,6 +256,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -263,6 +331,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  sourceURL?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -274,6 +343,55 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  path?: T;
+  menuTitle?: T;
+  parent?: T;
+  order?: T;
+  showInMenu?: T;
+  sourceURL?: T;
+  content?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              body?: T;
+              id?: T;
+              blockName?: T;
+            };
+        image?:
+          | T
+          | {
+              image?: T;
+              caption?: T;
+              id?: T;
+              blockName?: T;
+            };
+        youtube?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+              blockName?: T;
+            };
+        xcvid?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

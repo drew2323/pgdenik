@@ -7,6 +7,7 @@ import { defineConfig, devices } from '@playwright/test'
 import 'dotenv/config'
 
 const executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH
+const e2eURL = 'http://127.0.0.1:3100'
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -17,14 +18,16 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  // The suite shares one database and intentionally verifies mutations in the
+  // Payload admin, so parallel workers would make the run non-deterministic.
+  workers: 1,
+  timeout: 90_000,
+  expect: { timeout: 15_000 },
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
+    baseURL: e2eURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -41,8 +44,12 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm dev',
-    reuseExistingServer: true,
-    url: 'http://localhost:3000',
+    command: 'pnpm start --hostname 127.0.0.1 --port 3100',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+    // Health-check the lightweight API endpoint instead of the homepage, so
+    // readiness is confirmed without triggering a heavy Payload page query on
+    // the "first hit" (which can hang and make the boot check flaky).
+    url: 'http://127.0.0.1:3100/api/health',
   },
 })

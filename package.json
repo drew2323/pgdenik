@@ -11,6 +11,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "import:live": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-live.ts",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
@@ -24,6 +25,7 @@
     "@payloadcms/next": "3.89.0",
     "@payloadcms/richtext-lexical": "3.89.0",
     "@payloadcms/ui": "3.89.0",
+    "cheerio": "1.1.2",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
@@ -38,6 +40,7 @@
     "@playwright/test": "1.58.2",
     "@testing-library/react": "16.3.0",
     "@types/node": "22.19.9",
+    "@types/pg": "^8.20.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "4.5.2",
@@ -51,7 +54,7 @@
     "vitest": "4.0.18"
   },
   "engines": {
-    "node": "^18.20.2 || >=20.9.0",
+    "node": ">=20.18.1",
     "pnpm": "^9 || ^10 || ^11"
   },
   "pnpm": {
