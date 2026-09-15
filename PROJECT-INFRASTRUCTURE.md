@@ -1,6 +1,6 @@
 # Project Infrastructure
 
-**Status:** DRAFT
+**Status:** INFRASTRUCTURE READY
 **Project:** PG Deník
 **Owner:** David Brázda
 **Infrastructure bootstrap scope:** APPROVED 2026-09-15 — nový standardní projekt, GitHub/Coolify pipeline, oddělené DB, runtime migrace, healthcheck a preview; produkční DNS cutover není schválen
@@ -59,6 +59,7 @@ Secrets jsou mimo Git v Coolify nebo lokálním necommitovaném `.env`.
 - Runtime-only secrets: produkční i preview `DATABASE_URL` a `PAYLOAD_SECRET` mají `is_buildtime=false`, `is_runtime=true`; hodnoty mezi prostředími jsou rozdílné
 - First deployment migration: ověřena v čisté lokální DB i na Coolify produkci přes zdravý DB-aware endpoint
 - Preview teardown: po zavření PR #1 kontejner `accqwcih3fe5lapan5prkfmx-pr-1` neexistuje a preview URL není zdravá
-- Rollback: TBD — provede se po druhém úspěšném production image
+- Druhý production deployment: `2c916dswwzcmqnibevrvj8su`, `finished`, webhook `true`, commit `eb6d91c51ffc8bfb5f42dede23526c706b466159`; CI `https://github.com/drew2323/pgdenik/actions/runs/34937205629`, success
+- Rollback: `xnzl8p7mn72bvnky9mkyxkji`, `finished`, `rollback=true`, přes plný SHA `ab2d36e26dbddc59c976f3b1ba27072a33a734b2`; následné HTTPS a `/api/health` prošly
 
-Status se změní na `INFRASTRUCTURE_READY` pouze po ověřeném rollbacku a návratu produkce na aktuální `main`.
+Infrastrukturní gate je splněný. Následující push tohoto manifestu vrátí prototype prostředí automatickým webhookem na aktuální `main`; stav se ověřuje veřejným healthcheckem před Development Handoffem.
