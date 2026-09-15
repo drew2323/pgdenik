@@ -8,17 +8,18 @@
 ## Workspace and repository
 
 - Local workspace: `/home/david/Projects/pgdenik`
-- GitHub repository: `https://github.com/drew2323/pgdenik` (vytvoří se po `PREFLIGHT_OK`)
+- GitHub repository: `https://github.com/drew2323/pgdenik`
 - Default branch: `main`
-- Bootstrap commit: TBD
+- Bootstrap commit: `68979a85273ef9e452cba54866179682e9c8396d`
+- Opravený ověřený runtime commit: `ab2d36e26dbddc59c976f3b1ba27072a33a734b2`
 
 ## Environments
 
-- Production prototype: `https://pgdenik.2.56.97.3.sslip.io`, source `main`, Coolify app TBD, DB TBD
-- Preview: `https://pr-<id>.pgdenik.2.56.97.3.sslip.io`, source pull request, stejná app TBD, oddělená DB TBD
+- Production prototype: `https://pgdenik.2.56.97.3.sslip.io`; source `main`; project `yq5m9smaaeesx6udjmmecp1o`; app `accqwcih3fe5lapan5prkfmx`; DB `j86ujwj5ipp6sg8mikhc8rsv`
+- Preview: `https://pr-<id>.pgdenik.2.56.97.3.sslip.io`; automatic PR deployment stejné app; DB `u3gp6y3q4whsnncdsucxnylb`
 - Final public domain: `https://pgdenik.cz` — mimo bootstrap; vyžaduje samostatné schválení cutoveru
 
-Preview database strategy: `shared-preview`; současně smí běžet jen jedna změna s migrací.
+Preview database strategy: `shared-preview`; současně smí běžet jen jedna změna s migrací. U PR #1 byl v běžícím kontejneru ověřen host `u3gp6y3q4whsnncdsucxnylb` a DB `pgdenik_preview`.
 
 ## Deployment contract
 
@@ -26,8 +27,8 @@ Preview database strategy: `shared-preview`; současně smí běžet jen jedna z
 - Local quality gate: `./scripts/quality.sh`
 - Build: `corepack pnpm build`
 - Start: `./scripts/start.sh`
-- Migrations: `./scripts/migrate.sh`
-- Coolify pre-deploy: prázdný; startup migrace používá PostgreSQL advisory lock
+- Migrations: `./scripts/migrate.sh` přes `migrate.mjs`, advisory lock a `lock_timeout=120s`
+- Coolify pre-deploy: prázdný; migrace běží při startu kontejneru
 - Verification: `./scripts/verify.sh <base-url>`
 - Internal port: `3000`
 - Health endpoint: `/api/health`
@@ -35,27 +36,29 @@ Preview database strategy: `shared-preview`; současně smí běžet jen jedna z
 
 ## Persistent resources
 
-- PostgreSQL production: TBD
-- PostgreSQL preview: TBD
-- Upload/file storage: perzistentní volume pro Payload media; TBD UUID/path
+- PostgreSQL production: `j86ujwj5ipp6sg8mikhc8rsv`; kontejnerově ověřen `healthy`
+- PostgreSQL preview: `u3gp6y3q4whsnncdsucxnylb`; kontejnerově ověřen `healthy`
+- Upload/file storage: persistent storage `pgdenik-media` mounted at `/app/media`
 - Backup policy: Coolify/PostgreSQL backup a kopie upload volume před datovou změnou nebo DNS cutoverem
-- Restore test: TBD
+- Restore test: před DNS cutoverem; infrastrukturní gate používá aplikační rollback bez uživatelských dat
 
 Secrets jsou mimo Git v Coolify nebo lokálním necommitovaném `.env`.
 
 ## First deployment proof
 
-- Skeleton commit: TBD
-- Production deployment URL: TBD
-- Preview PR: TBD
-- Preview deployment URL: TBD
-- HTTPS verified: TBD
-- Healthcheck verified: TBD
-- Git webhook verified: TBD
-- Runtime-only secrets verified: TBD
-- First deployment migration verified: TBD
-- Preview teardown verified: TBD
-- Rollback verified: TBD
-- Evidence/log link: TBD
+- Skeleton commit: `68979a85273ef9e452cba54866179682e9c8396d`
+- Runtime fix a čistá lokální DB: commit `ab2d36e26dbddc59c976f3b1ba27072a33a734b2`; jedna migrace; `/api/health` 200; `LOCAL_OK`
+- Production deployment: `fgujceqw92pcaire3mk99vgm`, `finished`, webhook `true`, přesný commit `ab2d36e26dbddc59c976f3b1ba27072a33a734b2`
+- Production CI: `https://github.com/drew2323/pgdenik/actions/runs/34935953650`, success, commit `ab2d36e26dbddc59c976f3b1ba27072a33a734b2`
+- Production URL/HTTPS/health: `https://pgdenik.2.56.97.3.sslip.io`, `scripts/verify.sh` prošel, `/api/health` vrací `{"status":"ok"}`
+- Preview PR: `https://github.com/drew2323/pgdenik/pull/1`
+- Preview deployment: `lkfjnfhgv1xx8mp4m3gnvgkd`, `finished`, webhook `true`, commit `ff681a87defe3d54493db60e55554584a3ae5bda`
+- Preview CI: `https://github.com/drew2323/pgdenik/actions/runs/34936482806`, success
+- Preview URL/HTTPS/health: `https://pr-1.pgdenik.2.56.97.3.sslip.io`, `PREVIEW_OK`, `/api/health` 200
+- Git webhook: GitHub hook `679460580`; podepsaný `ping`, `push` a `pull_request` delivery vrací 200
+- Runtime-only secrets: produkční i preview `DATABASE_URL` a `PAYLOAD_SECRET` mají `is_buildtime=false`, `is_runtime=true`; hodnoty mezi prostředími jsou rozdílné
+- First deployment migration: ověřena v čisté lokální DB i na Coolify produkci přes zdravý DB-aware endpoint
+- Preview teardown: po zavření PR #1 kontejner `accqwcih3fe5lapan5prkfmx-pr-1` neexistuje a preview URL není zdravá
+- Rollback: TBD — provede se po druhém úspěšném production image
 
-Status se změní na `INFRASTRUCTURE_READY` pouze po ověřeném Git → Coolify → VPS → HTTPS toku a automatickém preview testu.
+Status se změní na `INFRASTRUCTURE_READY` pouze po ověřeném rollbacku a návratu produkce na aktuální `main`.
