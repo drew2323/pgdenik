@@ -188,8 +188,18 @@ async function run() {
           let media = (await payload.find({ collection: 'media', depth: 0, limit: 1, req, where: { sourceURL: { equals: image.sourceURL } } })).docs[0]
           if (!media)
             media = await payload.create({ collection: 'media', data: { alt: image.alt, sourceURL: image.sourceURL }, depth: 0, filePath: downloaded.filePath, req })
-          else if (media.alt !== image.alt)
-            media = await payload.update({ collection: 'media', data: { alt: image.alt }, depth: 0, id: media.id, req })
+          else
+            // The database can outlive the media volume (notably on rebuilt previews).
+            // Re-upload every discovered source image so an existing media record
+            // never points at a file that is absent from the current volume.
+            media = await payload.update({
+              collection: 'media',
+              data: { alt: image.alt, sourceURL: image.sourceURL },
+              depth: 0,
+              filePath: downloaded.filePath,
+              id: media.id,
+              req,
+            })
           blocks.push({ blockType: 'image', image: media.id })
         }
         return blocks
