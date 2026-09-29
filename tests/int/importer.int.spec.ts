@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  compareLegacyMenuPages,
   discoverPublicTree,
   fetchWithRetry,
   parseSourcePage,
@@ -17,6 +18,28 @@ const source = `<!doctype html><html><head><link rel="canonical" href="/xwiki/bi
 </body></html>`
 
 describe('live importer parser', () => {
+  it('orders every sibling group like the legacy XWiki menu, including the top level', () => {
+    const unordered = [
+      { fullName: 'Technology.WebHome', parent: 'Main.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Technology/', title: '10 Technologie' },
+      { fullName: 'Tips.WebHome', parent: 'Main.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Tips/', title: '01 Tipy a triky' },
+      { fullName: 'Analysis.WebHome', parent: 'Main.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Analysis/', title: '02 Analýzy letů' },
+      { fullName: 'Closecalls.WebHome', parent: 'Main.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Closecalls/', title: '07 Closecalls' },
+      { fullName: 'Tricks.05.WebHome', parent: 'Tips.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Tips/05/', title: '05 Strategie' },
+      { fullName: 'Tricks.045.WebHome', parent: 'Tips.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Tips/045/', title: '045 Dohledávání' },
+      { fullName: 'Tricks.04.WebHome', parent: 'Tips.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Tips/04/', title: '04 Lokalizace' },
+    ]
+
+    expect([...unordered].sort(compareLegacyMenuPages).map((page) => page.title)).toEqual([
+      '01 Tipy a triky',
+      '02 Analýzy letů',
+      '07 Closecalls',
+      '10 Technologie',
+      '04 Lokalizace',
+      '045 Dohledávání',
+      '05 Strategie',
+    ])
+  })
+
   it('uses the URL hierarchy when REST sourceParent points at a sibling page', () => {
     const pages = [
       { sourceID: 'Main.WebHome', path: '/', parentPath: null },
@@ -112,8 +135,8 @@ describe('live importer parser', () => {
 
     expect(result.pages.map((page) => page.fullName)).toEqual([
       'Main.WebHome',
-      'Visible.WebHome',
       'Orphaned.WebHome',
+      'Visible.WebHome',
       'Visible.Deep.WebHome',
     ])
     expect(new Set(result.pages.map((page) => page.sourceURL)).size).toBe(4)
@@ -165,7 +188,7 @@ describe('live importer parser', () => {
     const body = sourcePageToLexical(parsed.page)
     expect(body.root.children).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ type: 'heading', tag: 'h2' }),
+        expect.objectContaining({ type: 'heading', tag: 'h3' }),
         expect.objectContaining({ type: 'paragraph' }),
         expect.objectContaining({ type: 'list', listType: 'bullet' }),
       ]),
@@ -187,6 +210,7 @@ describe('live importer parser', () => {
     expect(serialized).toContain('"listType":"number"')
     expect(serialized).toContain('"listType":"bullet"')
     expect(serialized).toContain('Vnořená')
+    expect(serialized.match(/Vnořená/g)).toHaveLength(1)
   })
 
   it('preserves same-page fragment links and their targets', () => {
@@ -200,6 +224,44 @@ describe('live importer parser', () => {
     expect(serialized).toContain('"url":"#pristani"')
     expect(serialized).toContain('"anchor":"pristani"')
     expect(parsed.problems).toEqual([])
+  })
+
+  it.each([
+    {
+      title: '03 Zachycení a profil dne',
+      toc: '<ul><li><span><a href="#HObecnE9tipy">Obecné tipy</a></span></li><li><span><a href="#HProfilDne">Profil Dne</a></span><ul><li><span><a href="#HAtributy">Atributy</a></span></li></ul></li></ul>',
+      body: '<p>Klíčový je timing startu.</p><h1 id="HObecnE9tipy" class="wikigeneratedid"><span>Obecné tipy</span></h1><h1 id="HProfilDne" class="wikigeneratedid"><span>Profil Dne</span></h1><h2 id="HAtributy" class="wikigeneratedid"><span>Atributy</span></h2>',
+    },
+    {
+      title: '04 Lokalizace dalšího stoupáku',
+      toc: '<ul><li><span><a href="#HDAvod">Úvod</a></span></li><li><span><a href="#HLokalizace">Lokalizace</a></span><ul><li><span><a href="#HTypy">Typy</a></span></li></ul></li></ul>',
+      body: '<h1 id="HDAvod" class="wikigeneratedid"><span>Úvod</span></h1><p>Obsah stránky.</p><h1 id="HLokalizace" class="wikigeneratedid"><span>Lokalizace</span></h1><h2 id="HTypy" class="wikigeneratedid"><span>Typy</span></h2>',
+    },
+  ])('removes only the generated leading TOC from live-style $title markup', ({ body, title, toc }) => {
+    const parsed = parseSourcePage(
+      `<div id="document-title"><h1>${title}</h1></div><div id="xwikicontent">${toc}${body}</div>`,
+      'https://www.pgdenik.cz/xwiki/bin/view/Tipy/Test/',
+    )
+    const serialized = JSON.stringify(sourcePageToLexical(parsed.page))
+
+    expect(serialized).not.toContain('"url":"#')
+    expect(serialized).not.toContain('"type":"list"')
+    expect(serialized).toMatch(/Klíčový je timing startu|Obsah stránky/)
+    expect(serialized).toContain('"type":"heading"')
+    expect(serialized).toContain('"tag":"h2"')
+    expect(serialized).toContain('"tag":"h3"')
+  })
+
+  it('preserves authored leading lists, including lists that contain a fragment link', () => {
+    const parsed = parseSourcePage(
+      '<div id="document-title"><h1>Authored</h1></div><div id="xwikicontent"><ul><li>Důležitá rada</li><li><a href="#detail">Přejít na detail</a></li></ul><h2 id="detail" class="wikigeneratedid">Detail</h2></div>',
+      'https://www.pgdenik.cz/xwiki/bin/view/Tipy/Authored/',
+    )
+    const serialized = JSON.stringify(sourcePageToLexical(parsed.page))
+
+    expect(serialized).toContain('"type":"list"')
+    expect(serialized).toContain('Důležitá rada')
+    expect(serialized).toContain('"url":"#detail"')
   })
 
   it('preserves source ordering across text, image, YouTube and XCvid blocks', () => {
@@ -252,7 +314,7 @@ describe('live importer parser', () => {
 
     expect(sourcePageToLexical(parsed.page).root.children).toEqual([
       expect.objectContaining({ type: 'heading', tag: 'h2' }),
-      expect.objectContaining({ type: 'heading', tag: 'h2' }),
+      expect.objectContaining({ type: 'heading', tag: 'h3' }),
     ])
   })
 

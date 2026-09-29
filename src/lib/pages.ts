@@ -51,14 +51,25 @@ export async function getPublicPages() {
 export async function getNavigation(): Promise<NavItem[]> {
   const result = await getPublicPages()
 
-  return result.docs
-    .filter((page) => page.showInMenu)
-    .map((page) => ({
-      id: String(page.id),
-      title: page.menuTitle || page.title,
-      path: page.path,
-      parent: page.parent
-        ? String(typeof page.parent === 'object' ? page.parent.id : page.parent)
-        : null,
-    }))
+  return pagesToNavigation(result.docs)
+}
+
+export function pagesToNavigation(
+  pages: Awaited<ReturnType<typeof getPublicPages>>['docs'],
+): NavItem[] {
+  return pagesToChildItems(pages.filter((page) => page.showInMenu))
+}
+
+export function pagesToChildItems(
+  pages: Awaited<ReturnType<typeof getPublicPages>>['docs'],
+): NavItem[] {
+  return [...pages].sort((left, right) => left.order - right.order).map((page) => ({
+    id: String(page.id),
+    title: page.menuTitle || page.title,
+    path: page.path,
+    order: page.order,
+    parent: page.parent
+      ? String(typeof page.parent === 'object' ? page.parent.id : page.parent)
+      : null,
+  }))
 }

@@ -51,6 +51,17 @@ test.describe('Frontend with deterministic CMS content', () => {
     expect((await redirected?.response())?.status()).toBe(308)
   })
 
+  test('lists direct child pages in the parent article', async ({ page }) => {
+    await page.goto(fixture.parentPath)
+
+    const childPages = page.getByRole('navigation', { name: 'Stránky v této sekci' })
+    await expect(childPages).toBeVisible()
+    await expect(childPages.getByRole('link', { name: 'Fixture child' })).toHaveAttribute(
+      'href',
+      fixture.childPath,
+    )
+  })
+
   test('keeps the closed mobile drawer inert and supports keyboard open/close', async ({
     page,
   }, testInfo) => {

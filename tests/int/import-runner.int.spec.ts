@@ -36,6 +36,12 @@ const fixturePages: PreparedImportPage[] = [
   },
 ]
 
+const reversedSiblingPages: PreparedImportPage[] = [
+  fixturePages[0],
+  { ...fixturePages[1], sourceID: 'Second.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Second/', title: 'Second', path: '/second' },
+  { ...fixturePages[1], sourceID: 'First.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/First/', title: 'First', path: '/first' },
+]
+
 function fakePayload(seed: Record<string, unknown>[] = []) {
   let nextID = seed.length + 1
   let docs = structuredClone(seed)
@@ -71,6 +77,19 @@ function fakePayload(seed: Record<string, unknown>[] = []) {
 }
 
 describe('fail-closed import reconciliation', () => {
+  it('persists legacy title order instead of REST traversal order', async () => {
+    const fake = fakePayload()
+    await importPages({
+      expectedSourceIDs: reversedSiblingPages.map((page) => page.sourceID),
+      pages: reversedSiblingPages,
+      payload: fake.payload,
+    })
+
+    expect(fake.read().filter((doc) => doc.parent === 1).map((doc) => [doc.path, doc.order])).toEqual([
+      ['/first', 0],
+      ['/second', 1],
+    ])
+  })
   it('pins the complete 67-page baseline and rejects missing or replacement IDs', () => {
     expect(treeBaseline.pages_count).toBe(67)
     expect(() => assertAuthoritativeTree(treeBaseline.pages.map((page) => page.fullName))).not.toThrow()

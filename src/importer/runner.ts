@@ -7,9 +7,41 @@ export type PreparedImportPage = {
   sourceParent: string
   sourceURL: string
   title: string
+  orderTitle?: string
   path: string
   parentPath: string | null
   blocks: Array<Record<string, unknown> & { blockType: string }>
+}
+
+export function orderPagesForImport(pages: PreparedImportPage[]): PreparedImportPage[] {
+  const byParent = new Map<string | null, PreparedImportPage[]>()
+  for (const page of pages) {
+    const siblings = byParent.get(page.parentPath) ?? []
+    siblings.push(page)
+    byParent.set(page.parentPath, siblings)
+  }
+  for (const siblings of byParent.values()) {
+    siblings.sort(
+      (left, right) => {
+        const leftTitle = left.orderTitle ?? left.title
+        const rightTitle = right.orderTitle ?? right.title
+        if (leftTitle !== rightTitle) return leftTitle < rightTitle ? -1 : 1
+        return left.sourceID.localeCompare(right.sourceID, 'cs')
+      },
+    )
+  }
+
+  const ordered: PreparedImportPage[] = []
+  const append = (parentPath: string | null) => {
+    for (const page of byParent.get(parentPath) ?? []) {
+      ordered.push(page)
+      append(page.path)
+    }
+  }
+  append(null)
+  if (ordered.length !== pages.length)
+    throw new Error(`Import hierarchy cannot be ordered: ${ordered.length}/${pages.length}`)
+  return ordered
 }
 
 type ImportDocument = Record<string, unknown> & { id: number | string }
@@ -113,6 +145,7 @@ export async function importPages({
     req: Record<string, unknown>,
   ) => Promise<PreparedImportPage['blocks']>
 }): Promise<ImportResult[]> {
+  pages = orderPagesForImport(pages)
   assertAuthoritativeTree(
     pages.map((page) => page.sourceID),
     expectedSourceIDs,

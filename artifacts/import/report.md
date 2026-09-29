@@ -1,7 +1,7 @@
 # Import PG Deník
 
 Source: https://www.pgdenik.cz
-Discovery: public XWiki REST children traversal
+Discovery: public XWiki REST children traversal; sibling order by stored legacy title and URL hierarchy
 
 - Discovered: 67
 - Imported: 67
