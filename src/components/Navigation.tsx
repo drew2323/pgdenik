@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-export type NavItem = { id: string; title: string; path: string; parent: string | null }
+export type NavItem = { id: string; title: string; path: string; parent: string | null; order?: number }
 export function getActiveBranchIDs(items: NavItem[], pathname: string): Set<string> {
   const byID = new Map(items.map((item) => [item.id, item]))
   const current = items.find((item) => item.path === pathname)

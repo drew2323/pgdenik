@@ -63,10 +63,11 @@ export function pagesToNavigation(
 export function pagesToChildItems(
   pages: Awaited<ReturnType<typeof getPublicPages>>['docs'],
 ): NavItem[] {
-  return pages.map((page) => ({
+  return [...pages].sort((left, right) => left.order - right.order).map((page) => ({
     id: String(page.id),
     title: page.menuTitle || page.title,
     path: page.path,
+    order: page.order,
     parent: page.parent
       ? String(typeof page.parent === 'object' ? page.parent.id : page.parent)
       : null,

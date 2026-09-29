@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { getActiveBranchIDs, Navigation, type NavItem } from '@/components/Navigation'
+import { pagesToNavigation } from '@/lib/pages'
 import { ChildPageList } from '@/components/ChildPageList'
 import { ContentBlocks } from '@/components/ContentBlocks'
 import { parseSourcePage, sourcePageToLexical } from '@/importer/parser'
@@ -9,12 +10,21 @@ vi.mock('next/navigation', () => ({ usePathname: () => '/renamed-child' }))
 vi.mock('next/link', () => ({ default: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a {...props} /> }))
 
 const items: NavItem[] = [
-  { id: 'root', title: 'Root', path: '/', parent: null },
-  { id: 'parent', title: 'Parent', path: '/unrelated-parent-url', parent: 'root' },
-  { id: 'child', title: 'Child', path: '/renamed-child', parent: 'parent' },
+  { id: 'root', title: 'Root', path: '/', parent: null, order: 0 },
+  { id: 'parent', title: 'Parent', path: '/unrelated-parent-url', parent: 'root', order: 0 },
+  { id: 'child', title: 'Child', path: '/renamed-child', parent: 'parent', order: 0 },
 ]
 
 describe('CMS relationship navigation state', () => {
+  it('sorts every sibling group by the explicit CMS order', () => {
+    const navigation = pagesToNavigation([
+      { id: 'root', title: 'Root', menuTitle: 'Root', path: '/', parent: null, order: 0, showInMenu: true },
+      { id: 'second', title: 'Second', menuTitle: 'Second', path: '/second', parent: { id: 'root' }, order: 1, showInMenu: true },
+      { id: 'first', title: 'First', menuTitle: 'First', path: '/first', parent: { id: 'root' }, order: 0, showInMenu: true },
+    ] as never)
+
+    expect(navigation.map((item) => item.title)).toEqual(['Root', 'First', 'Second'])
+  })
   it('derives the active branch from parent IDs rather than URL prefixes', () => {
     expect([...getActiveBranchIDs(items, '/renamed-child')]).toEqual(['child', 'parent', 'root'])
   })

@@ -210,6 +210,7 @@ describe('live importer parser', () => {
     expect(serialized).toContain('"listType":"number"')
     expect(serialized).toContain('"listType":"bullet"')
     expect(serialized).toContain('Vnořená')
+    expect(serialized.match(/Vnořená/g)).toHaveLength(1)
   })
 
   it('preserves same-page fragment links and their targets', () => {

@@ -380,6 +380,9 @@ function inlineNodes($: cheerio.CheerioAPI, element: CheerioNode, format = 0): L
     }
     if (child.type !== 'tag') continue
     const tag = child.tagName.toLowerCase()
+    // Nested lists are block children of the list item. Converting them here as
+    // inline content duplicates their labels before appendBlock adds the list.
+    if (tag === 'ul' || tag === 'ol') continue
     const nextFormat =
       format | (tag === 'strong' || tag === 'b' ? 1 : 0) | (tag === 'em' || tag === 'i' ? 2 : 0)
     if (tag === 'br') {
