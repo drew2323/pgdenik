@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { ContentBlocks } from '@/components/ContentBlocks'
-import { getPublicPages } from '@/lib/pages'
+import { ChildPageList } from '@/components/ChildPageList'
+import { getPublicPages, pagesToChildItems } from '@/lib/pages'
 
 export default async function HomePage() {
   const result = await getPublicPages()
@@ -13,6 +14,7 @@ export default async function HomePage() {
         <h1>{page.title}</h1>
       </header>
       <ContentBlocks blocks={page.content} />
+      <ChildPageList items={pagesToChildItems(result.docs)} pageID={String(page.id)} />
     </article>
   )
 }

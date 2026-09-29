@@ -25,7 +25,7 @@ const MAX_IMAGES = 500
 const MAX_TOTAL_IMAGE_BYTES = 250 * 1024 * 1024
 type Status = 'imported' | 'skipped' | 'problem'
 type Entry = { sourceID: string; sourceURL: string; status: Status; reason: string }
-type AuditedPage = SourcePage & { sourceID: string; sourceParent: string }
+type AuditedPage = SourcePage & { orderTitle: string; sourceID: string; sourceParent: string }
 type ImportImageBlock = { blockType: 'importImage'; alt: string; sourceURL: string }
 
 const errorReason = (error: unknown) => {
@@ -43,7 +43,12 @@ async function fetchPublicPages(tree: PublicTreePage[]) {
       const response = await fetchWithRetry(node.sourceURL, { resourceType: 'page' })
       if (!response.ok) throw new Error(`http-${response.status}`)
       const parsed = parseSourcePage(await response.text(), node.sourceURL)
-      pages.push({ ...parsed.page, sourceID: node.fullName, sourceParent: node.parent })
+      pages.push({
+        ...parsed.page,
+        orderTitle: node.title,
+        sourceID: node.fullName,
+        sourceParent: node.parent,
+      })
       for (const issue of parsed.problems)
         problems.push({
           sourceID: node.fullName,
@@ -64,6 +69,7 @@ function preparePages(pages: AuditedPage[]): PreparedImportPage[] {
     sourceParent: page.sourceParent,
     sourceURL: page.sourceURL,
     title: page.title,
+    orderTitle: page.orderTitle,
     path: page.path,
     parentPath: page.parentPath,
     blocks: page.segments.length
@@ -130,12 +136,12 @@ async function writeReport(args: {
     problem: all.filter((entry) => entry.status === 'problem').length,
   }
   await mkdir(output, { recursive: true })
-  await writeFile(path.join(output, 'public-tree.json'), `${JSON.stringify({ method: 'public XWiki REST children traversal', source: origin, pages_count: args.tree.length, pages: args.tree }, null, 2)}\n`)
+  await writeFile(path.join(output, 'public-tree.json'), `${JSON.stringify({ method: 'public XWiki REST children traversal; sibling order by stored legacy title and URL hierarchy', source: origin, pages_count: args.tree.length, pages: args.tree }, null, 2)}\n`)
   await writeFile(path.join(output, 'source-pages.json'), `${JSON.stringify(args.pages, null, 2)}\n`)
   await writeFile(path.join(output, 'report.json'), `${JSON.stringify({ generatedAt: new Date().toISOString(), source: origin, counts, reconciliation: args.reconciliation, entries: all }, null, 2)}\n`)
   await writeFile(
     path.join(output, 'report.md'),
-    `# Import PG Deník\n\nSource: ${origin}\nDiscovery: public XWiki REST children traversal\n\n- Discovered: ${counts.discovered}\n- Imported: ${counts.imported}\n- Skipped: ${counts.skipped}\n- Problems: ${counts.problem}\n\n| Status | Source ID | Source | Reason |\n|---|---|---|---|\n${all.map((entry) => `| ${entry.status} | ${entry.sourceID.replaceAll('|', '\\|')} | ${entry.sourceURL.replaceAll('|', '%7C')} | ${entry.reason.replaceAll('|', '\\|')} |`).join('\n')}\n`,
+    `# Import PG Deník\n\nSource: ${origin}\nDiscovery: public XWiki REST children traversal; sibling order by stored legacy title and URL hierarchy\n\n- Discovered: ${counts.discovered}\n- Imported: ${counts.imported}\n- Skipped: ${counts.skipped}\n- Problems: ${counts.problem}\n\n| Status | Source ID | Source | Reason |\n|---|---|---|---|\n${all.map((entry) => `| ${entry.status} | ${entry.sourceID.replaceAll('|', '\\|')} | ${entry.sourceURL.replaceAll('|', '%7C')} | ${entry.reason.replaceAll('|', '\\|')} |`).join('\n')}\n`,
   )
   console.log(JSON.stringify({ counts, reconciliation: args.reconciliation }))
 }

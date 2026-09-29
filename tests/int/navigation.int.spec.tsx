@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { getActiveBranchIDs, Navigation, type NavItem } from '@/components/Navigation'
+import { ChildPageList } from '@/components/ChildPageList'
 import { ContentBlocks } from '@/components/ContentBlocks'
 import { parseSourcePage, sourcePageToLexical } from '@/importer/parser'
 
@@ -28,6 +29,30 @@ describe('CMS relationship navigation state', () => {
     expect(screen.getByRole('link', { name: 'Root' }).getAttribute('aria-current')).toBe(
       'location',
     )
+  })
+})
+
+describe('page child navigation', () => {
+  it('visibly lists direct children in configured sibling order', () => {
+    render(
+      <ChildPageList
+        items={[
+          { id: 'later', title: '31.5.2021 Čerták', path: '/analyzy/31-5', parent: 'analysis' },
+          { id: 'first', title: '8.5.2021 Blatná', path: '/analyzy/8-5', parent: 'analysis' },
+        ]}
+        pageID="analysis"
+      />,
+    )
+
+    const childNavigation = screen.getByRole('navigation', { name: 'Stránky v této sekci' })
+    const links = Array.from(childNavigation.querySelectorAll('a')).map((link) => link.textContent)
+    expect(screen.getByRole('heading', { name: 'Stránky v této sekci' })).toBeTruthy()
+    expect(links).toEqual(['31.5.2021 Čerták', '8.5.2021 Blatná'])
+  })
+
+  it('renders nothing for a leaf page', () => {
+    const { container } = render(<ChildPageList items={items} pageID="child" />)
+    expect(container.innerHTML).toBe('')
   })
 })
 

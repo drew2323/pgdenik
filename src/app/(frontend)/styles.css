@@ -214,6 +214,24 @@ figcaption {
   border-left: 3px solid var(--focus);
   padding-left: 1rem;
 }
+.child-pages {
+  margin-top: 3.5rem;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: #fff;
+}
+.child-pages h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+.child-pages ol {
+  margin: 0;
+  padding-left: 1.6rem;
+}
+.child-pages li + li {
+  margin-top: 0.45rem;
+}
 .menu-button,
 .menu-scrim {
   display: none;

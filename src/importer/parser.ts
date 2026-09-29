@@ -27,6 +27,25 @@ export type PublicTreePage = {
   title: string
 }
 
+function legacyMenuTitle(title: string): string {
+  // The old XWiki tree orders the stored title. Some titles deliberately start
+  // with literal &nbsp; entities, so comparing decoded/rendered text would lose
+  // ordering information.
+  return title
+}
+
+export function compareLegacyMenuPages(
+  left: Pick<PublicTreePage, 'fullName' | 'parent' | 'title'>,
+  right: Pick<PublicTreePage, 'fullName' | 'parent' | 'title'>,
+): number {
+  const parent = left.parent.localeCompare(right.parent, 'cs')
+  if (parent) return parent
+  const leftTitle = legacyMenuTitle(left.title)
+  const rightTitle = legacyMenuTitle(right.title)
+  if (leftTitle !== rightTitle) return leftTitle < rightTitle ? -1 : 1
+  return left.fullName.localeCompare(right.fullName, 'cs')
+}
+
 type TreeSummary = {
   fullName?: string
   parent?: string
@@ -113,6 +132,20 @@ export async function discoverPublicTree(
       warnings.push(`children-json:${current.fullName}`)
       continue
     }
+    summaries.sort((left, right) =>
+      compareLegacyMenuPages(
+        {
+          fullName: left.fullName ?? '',
+          parent: left.parent ?? current.fullName,
+          title: left.title ?? left.fullName ?? '',
+        },
+        {
+          fullName: right.fullName ?? '',
+          parent: right.parent ?? current.fullName,
+          title: right.title ?? right.fullName ?? '',
+        },
+      ),
+    )
     for (const summary of summaries) {
       if (summary.parent && summary.parent !== current.fullName) continue
       if (
@@ -445,6 +478,7 @@ export function parseSourcePage(
   const problems: { sourceURL: string; reason: string }[] = []
 
   content.find('script,style,form').remove()
+  removeGeneratedLeadingTOC($, content)
   content.find('object,embed,applet,video,audio,canvas,svg').each((_, element) => {
     problems.push({ sourceURL, reason: `unsupported-element:${element.tagName}` })
     $(element).replaceWith($(element).contents())
@@ -544,4 +578,33 @@ export function parseSourcePage(
     },
     problems,
   }
+}
+
+function removeGeneratedLeadingTOC(
+  $: cheerio.CheerioAPI,
+  content: cheerio.Cheerio<CheerioNode>,
+): void {
+  const first = content.children().first()
+  if (!first.is('ul,ol')) return
+  const anchors = first.find('a[href^="#"]')
+  if (anchors.length < 2 || first.find('a').length !== anchors.length) return
+
+  const generatedHeadingIDs = new Set(
+    content
+      .find('h1.wikigeneratedid[id],h2.wikigeneratedid[id],h3.wikigeneratedid[id],h4.wikigeneratedid[id],h5.wikigeneratedid[id],h6.wikigeneratedid[id]')
+      .toArray()
+      .map((heading) => $(heading).attr('id'))
+      .filter((id): id is string => Boolean(id)),
+  )
+  const allLinksTargetGeneratedHeadings = anchors.toArray().every((anchor) => {
+    const href = $(anchor).attr('href')
+    return href ? generatedHeadingIDs.has(href.slice(1)) : false
+  })
+  const everyItemIsOnlyALink = first.find('li').toArray().every((item) => {
+    const clone = $(item).clone()
+    clone.children('ul,ol').remove()
+    const ownAnchors = clone.find('a[href^="#"]')
+    return ownAnchors.length === 1 && clone.text().trim() === ownAnchors.text().trim()
+  })
+  if (allLinksTargetGeneratedHeadings && everyItemIsOnlyALink) first.remove()
 }

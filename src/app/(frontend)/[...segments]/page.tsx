@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ContentBlocks } from '@/components/ContentBlocks'
-import { getPublicPages } from '@/lib/pages'
+import { ChildPageList } from '@/components/ChildPageList'
+import { getPublicPages, pagesToChildItems } from '@/lib/pages'
 type Props = { params: Promise<{ segments: string[] }> }
 async function findPage(segments: string[]) {
   const pages = await getPublicPages()
@@ -12,7 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return page ? { title: page.title } : {}
 }
 export default async function PublicPage({ params }: Props) {
-  const page = await findPage((await params).segments)
+  const { segments } = await params
+  const pages = await getPublicPages()
+  const page = pages.docs.find((candidate) => candidate.path === `/${segments.join('/')}`)
   if (!page) notFound()
   return (
     <article>
@@ -21,6 +24,7 @@ export default async function PublicPage({ params }: Props) {
         <h1>{page.title}</h1>
       </header>
       <ContentBlocks blocks={page.content} />
+      <ChildPageList items={pagesToChildItems(pages.docs)} pageID={String(page.id)} />
     </article>
   )
 }
