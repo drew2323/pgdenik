@@ -188,7 +188,7 @@ describe('live importer parser', () => {
     const body = sourcePageToLexical(parsed.page)
     expect(body.root.children).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ type: 'heading', tag: 'h2' }),
+        expect.objectContaining({ type: 'heading', tag: 'h3' }),
         expect.objectContaining({ type: 'paragraph' }),
         expect.objectContaining({ type: 'list', listType: 'bullet' }),
       ]),
@@ -248,6 +248,8 @@ describe('live importer parser', () => {
     expect(serialized).not.toContain('"type":"list"')
     expect(serialized).toMatch(/Klíčový je timing startu|Obsah stránky/)
     expect(serialized).toContain('"type":"heading"')
+    expect(serialized).toContain('"tag":"h2"')
+    expect(serialized).toContain('"tag":"h3"')
   })
 
   it('preserves authored leading lists, including lists that contain a fragment link', () => {
@@ -312,7 +314,7 @@ describe('live importer parser', () => {
 
     expect(sourcePageToLexical(parsed.page).root.children).toEqual([
       expect.objectContaining({ type: 'heading', tag: 'h2' }),
-      expect.objectContaining({ type: 'heading', tag: 'h2' }),
+      expect.objectContaining({ type: 'heading', tag: 'h3' }),
     ])
   })
 

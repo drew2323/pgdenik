@@ -414,8 +414,11 @@ export function sourcePageToLexical(page: SourcePage): LexicalBody {
   const appendBlock = (element: CheerioNode, target: LexicalNode[]) => {
     if (element.type !== 'tag') return
     const tag = element.tagName.toLowerCase()
-    if (/^h[1-6]$/.test(tag))
-      target.push(elementNode('heading', inlineNodes($, element), { anchor: $(element).attr('id'), tag: tag === 'h1' ? 'h2' : tag }))
+    if (/^h[1-6]$/.test(tag)) {
+      const sourceLevel = Number(tag.slice(1))
+      const destinationTag = `h${Math.min(sourceLevel + 1, 6)}`
+      target.push(elementNode('heading', inlineNodes($, element), { anchor: $(element).attr('id'), tag: destinationTag }))
+    }
     else if (tag === 'ul' || tag === 'ol') {
       const items = $(element)
         .children('li')
