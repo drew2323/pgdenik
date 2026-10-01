@@ -1,6 +1,6 @@
-## Paperclip
+## Issue
 
-- Ticket: `FAR-___`
+- Issue: `___`
 
 ## Co se mění
 
@@ -22,4 +22,4 @@
 - Riziko: …
 - Rollback: revert tohoto PR / jiný postup: …
 
-> Merge a produkční deploy schvaluje člověk až po zeleném CI a review preview. Požadované opravy zůstávají na stejné branchi a ve stejném Paperclip ticketu.
+> Merge a produkční deploy schvaluje člověk až po zeleném CI a review preview. Požadované opravy zůstávají na stejné branchi a ve stejném issue.
