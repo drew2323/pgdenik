@@ -1,47 +1,48 @@
 # PG Deník
 
-Nový web `pgdenik.cz`: responzivní informační deník s Payload CMS, stromovou navigací a bloky pro text, obrázky, YouTube a XCvid.
+Osobní paraglidingový deník na `https://pgdenik.cz`. Veřejná část zobrazuje strom zápisů, text, obrázky a video embedy; správa obsahu běží přes Payload CMS.
 
-## Dokumentace
+## Stack
 
-- `SPEC.md` — schválený product scope
-- `DESIGN-BRIEF.md` — vizuální zadání pro Codex
-- `ARCHITECTURE.md` — high-level architektura
-- `PROJECT-INFRASTRUCTURE.md` — deployment a ověřovací důkazy
-- `WEB_PLATFORM.md` — společný platformní standard
+- Next.js 16 + React 19 + TypeScript
+- Payload CMS 3
+- PostgreSQL 16
+- Tailwind CSS
+- Vitest + Playwright
+- Docker image nasazovaný přes Coolify
 
-## Lokálně
+Aktuální chování a datový model určují kód, migrace a testy. Zadání změn, acceptance criteria, rozhodnutí a průběžný stav patří do projektu **PG Deník** v Paperclipu, nikoli do nových handoff/spec souborů v repozitáři.
+
+## Lokální spuštění
+
+Požadavky: Node.js 20+, Corepack/pnpm a Docker.
 
 ```bash
 cp .env.example .env
 docker compose up -d postgres
 corepack pnpm install --frozen-lockfile
+corepack pnpm run payload -- migrate
 corepack pnpm dev
 ```
 
-Admin je na `/admin`, veřejný web na `/` a readiness na `/api/health`.
+- web: `http://localhost:3000`
+- administrace: `http://localhost:3000/admin`
+- health: `http://localhost:3000/api/health`
 
-## Obnovení importovaného obsahu
-
-Import z veřejného legacy webu je explicitní provozní krok, nikoli součást buildu nebo
-startu aplikace:
-
-```bash
-corepack pnpm import:live
-```
-
-Příkaz používá `DATABASE_URL` a `PAYLOAD_SECRET` aktuálního prostředí. Je
-opakovatelný, existující stránky identifikuje podle zdrojové URL a všechny změny
-stránek provede v jedné databázové transakci. Před zápisem kontroluje přesnou sadu
-67 veřejných zdrojových stránek a odmítne neúplný zdroj i neočekávané zastaralé
-záznamy. Pro refresh preview se spouští jednou v novém PR kontejneru po jeho
-zdravém nasazení; tím zůstává startup/migrační kontrakt beze změny.
-
-## Ověření
+## Ověření změny
 
 ```bash
 ./scripts/quality.sh
-./scripts/verify.sh http://127.0.0.1:3000
 ```
 
-Deployment probíhá výhradně přes GitHub → Coolify. Produkční DNS `pgdenik.cz` se nepřepíná bez samostatného schválení.
+Quality gate spouští lint, typecheck, integrační testy, build a E2E testy. CI používá stejný kontrakt po jednotlivých krocích.
+
+## Jak přispívat
+
+Před prací si přečti `AGENTS.md`. Stabilní informace o prostředích, preview a produkčním nasazení jsou v `docs/OPERATIONS.md`.
+
+Standardní tok je:
+
+`Paperclip ticket → samostatná branch → testy → PR + preview → lidské review → merge → produkce`
+
+Bez aktivního Paperclip ticketu se změna nezačíná. Produkční merge a deploy nikdy neschvaluje agent sám.
