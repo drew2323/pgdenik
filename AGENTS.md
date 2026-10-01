@@ -8,8 +8,9 @@
 6. PR musí odkazovat na Paperclip ticket a obsahovat: stručné shrnutí, testy, rizika a ověřenou Coolify preview URL. U čistě dokumentační změny napiš `Preview: not required (docs-only)`.
 7. Agent smí commitnout, pushnout a otevřít draft PR. Agent nesmí sám mergeovat, spouštět produkční deploy ani uzavřít ticket jako `done`.
 8. Po lidském review oprav připomínky na stejné branchi. Ticket jde do `done` až po schváleném merge a ověření produkce.
-9. Produkční data, tajemství, migrace, importy a změny Coolify vyžadují explicitní scope ticketu a rollback plán. Tajemství nikdy necommituj ani nevypisuj.
-10. Pokud je ticket nejasný nebo preview/CI nefunguje, zastav se a zapiš konkrétní blocker. Nerozšiřuj práci odhadem.
+9. Produkční tajemství a změny Coolify vyžadují explicitní scope ticketu. Tajemství nikdy necommituj ani nevypisuj.
+10. U CMS nebo databázové změny nejprve dokumentovaným a ověřeným postupem synchronizuj izolovanou preview DB z produkce, změnu aplikuj pouze tam a ověř ji přes preview aplikaci. Samotný ticket neopravňuje k produkčnímu zápisu. Ten smí proběhnout až po explicitním lidském schválení preview, s čerstvou zálohou, reprodukovatelným postupem, rollbackem a následným ověřením.
+11. Pokud je ticket nejasný, preview/CI nefunguje nebo chybí ověřený refresh postup preview DB, zastav se a zapiš konkrétní blocker. Nerozšiřuj práci odhadem a neimprovizuj v produkci.
 
 <!-- BEGIN_NEXTJS_AGENT_RULES -->
 # Next.js: ALWAYS read the docs before coding

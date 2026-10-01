@@ -19,6 +19,8 @@ Health endpoint je vždy `/api/health`. Preview ani lokální vývoj nesmí pou�
 - CI: GitHub Actions, workflow `.github/workflows/ci.yml`
 - Runtime a preview: Coolify
 - Produkční aplikace v Coolify: UUID `accqwcih3fe5lapan5prkfmx`
+- Produkční PostgreSQL: UUID `j86ujwj5ipp6sg8mikhc8rsv`, databáze `pgdenik_prod`
+- Sdílená preview PostgreSQL: UUID `u3gp6y3q4whsnncdsucxnylb`, databáze `pgdenik_preview`
 
 Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři nebo Paperclip komentáři.
 
@@ -34,6 +36,20 @@ Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři neb
 8. Po deployi se ověří `./scripts/verify.sh https://pgdenik.cz`. Teprve potom se ticket uzavře jako `done`.
 
 Chybějící CI nebo preview je blocker review. Agent nesmí použít produkční deploy jako náhradu preview.
+
+## CMS a databázové změny
+
+Datový ticket není oprávnění k přímému zápisu do produkce. Povinné pořadí je:
+
+1. Ověřit, že žádné jiné aktivní preview review nepoužívá sdílenou preview DB.
+2. Dokumentovaným a ověřeným provozním postupem obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani Paperclipu.
+3. Zaznamenat do ticketu čas refreshu, zdrojové a cílové prostředí a nesenzitivní výsledek kontrol.
+4. Aplikovat reprodukovatelnou změnu pouze na preview DB a ověřit ji přes Coolify preview aplikaci.
+5. Předložit uživateli preview, očekávaný produkční zásah a rollback; vyžádat explicitní schválení produkčního kroku.
+6. Po schválení vytvořit čerstvou produkční zálohu, provést stejnou změnu v produkci a ověřit databázi i veřejnou aplikaci.
+7. Teprve po produkčním ověření lze ticket uzavřít.
+
+Pokud refresh postup není dostupný nebo nebyl pro projekt ověřen, ticket přejde do `blocked`. Agent nesmí místo preview použít produkci, odvodit souhlas pouze z formulace ticketu ani provést ad-hoc SQL zápis do produkce.
 
 ## Runtime kontrakt
 
@@ -62,6 +78,7 @@ Chybějící CI nebo preview je blocker review. Agent nesmí použít produkčn�
 
 - Žádné ruční změny v běžícím kontejneru.
 - Žádný přímý push do `main`.
-- Žádné produkční migrace nebo import bez schváleného ticketu a rollbacku.
+- Žádné produkční migrace, importy nebo datové zápisy před ověřením v synchronizované preview DB a následným explicitním lidským schválením.
+- Před schváleným produkčním datovým zásahem vždy vytvořit čerstvou zálohu a mít reprodukovatelný postup i rollback.
 - Rollback aplikace = předchozí úspěšný Coolify deployment.
 - Datový rollback se provádí jen podle konkrétního plánu v incidentním/migračním ticketu; aplikace se nevrací naslepo přes nevratnou databázovou migraci.
