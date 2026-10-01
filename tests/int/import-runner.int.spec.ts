@@ -36,10 +36,14 @@ const fixturePages: PreparedImportPage[] = [
   },
 ]
 
-const reversedSiblingPages: PreparedImportPage[] = [
+const unorderedSiblingPages: PreparedImportPage[] = [
   fixturePages[0],
-  { ...fixturePages[1], sourceID: 'Second.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Second/', title: 'Second', path: '/second' },
-  { ...fixturePages[1], sourceID: 'First.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/First/', title: 'First', path: '/first' },
+  { ...fixturePages[1], sourceID: 'PlainZ.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/PlainZ/', title: 'Bez čísla', path: '/plain-z' },
+  { ...fixturePages[1], sourceID: 'Hundred.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Hundred/', title: '100 Poslední', path: '/hundred' },
+  { ...fixturePages[1], sourceID: 'Seven.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/Seven/', title: '7 První', path: '/seven' },
+  { ...fixturePages[1], sourceID: 'PlainA.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/PlainA/', title: 'Bez čísla', path: '/plain-a' },
+  { ...fixturePages[1], sourceID: 'NumericZ.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/NumericZ/', title: '045 A', path: '/numeric-z' },
+  { ...fixturePages[1], sourceID: 'NumericA.WebHome', sourceURL: 'https://www.pgdenik.cz/xwiki/bin/view/NumericA/', title: '045 Z', path: '/numeric-a' },
 ]
 
 function fakePayload(seed: Record<string, unknown>[] = []) {
@@ -77,17 +81,21 @@ function fakePayload(seed: Record<string, unknown>[] = []) {
 }
 
 describe('fail-closed import reconciliation', () => {
-  it('persists legacy title order instead of REST traversal order', async () => {
+  it('orders numeric title prefixes first, then plain titles, with gaps for insertion', async () => {
     const fake = fakePayload()
     await importPages({
-      expectedSourceIDs: reversedSiblingPages.map((page) => page.sourceID),
-      pages: reversedSiblingPages,
+      expectedSourceIDs: unorderedSiblingPages.map((page) => page.sourceID),
+      pages: unorderedSiblingPages,
       payload: fake.payload,
     })
 
     expect(fake.read().filter((doc) => doc.parent === 1).map((doc) => [doc.path, doc.order])).toEqual([
-      ['/first', 0],
-      ['/second', 1],
+      ['/seven', 0],
+      ['/numeric-a', 10],
+      ['/numeric-z', 20],
+      ['/hundred', 30],
+      ['/plain-a', 40],
+      ['/plain-z', 50],
     ])
   })
   it('pins the complete 67-page baseline and rejects missing or replacement IDs', () => {

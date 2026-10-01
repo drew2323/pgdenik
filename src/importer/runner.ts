@@ -13,6 +13,29 @@ export type PreparedImportPage = {
   blocks: Array<Record<string, unknown> & { blockType: string }>
 }
 
+const IMPORT_ORDER_STEP = 10
+
+function numericTitlePrefix(title: string): bigint | null {
+  const match = title.match(/^\d+/)
+  return match ? BigInt(match[0]) : null
+}
+
+function compareImportSiblings(left: PreparedImportPage, right: PreparedImportPage): number {
+  const leftTitle = left.orderTitle ?? left.title
+  const rightTitle = right.orderTitle ?? right.title
+  const leftPrefix = numericTitlePrefix(leftTitle)
+  const rightPrefix = numericTitlePrefix(rightTitle)
+
+  if (leftPrefix !== null && rightPrefix === null) return -1
+  if (leftPrefix === null && rightPrefix !== null) return 1
+  if (leftPrefix !== null && rightPrefix !== null) {
+    if (leftPrefix !== rightPrefix) return leftPrefix < rightPrefix ? -1 : 1
+    return left.sourceID.localeCompare(right.sourceID, 'cs')
+  }
+  if (leftTitle !== rightTitle) return leftTitle < rightTitle ? -1 : 1
+  return left.sourceID.localeCompare(right.sourceID, 'cs')
+}
+
 export function orderPagesForImport(pages: PreparedImportPage[]): PreparedImportPage[] {
   const byParent = new Map<string | null, PreparedImportPage[]>()
   for (const page of pages) {
@@ -21,14 +44,7 @@ export function orderPagesForImport(pages: PreparedImportPage[]): PreparedImport
     byParent.set(page.parentPath, siblings)
   }
   for (const siblings of byParent.values()) {
-    siblings.sort(
-      (left, right) => {
-        const leftTitle = left.orderTitle ?? left.title
-        const rightTitle = right.orderTitle ?? right.title
-        if (leftTitle !== rightTitle) return leftTitle < rightTitle ? -1 : 1
-        return left.sourceID.localeCompare(right.sourceID, 'cs')
-      },
-    )
+    siblings.sort(compareImportSiblings)
   }
 
   const ordered: PreparedImportPage[] = []
@@ -189,7 +205,9 @@ export async function importPages({
         _status: 'published',
         content: blocks,
         menuTitle: page.title,
-        order: siblings.findIndex((candidate) => candidate.sourceID === page.sourceID),
+        order:
+          siblings.findIndex((candidate) => candidate.sourceID === page.sourceID) *
+          IMPORT_ORDER_STEP,
         parent,
         path: page.path,
         showInMenu: true,
