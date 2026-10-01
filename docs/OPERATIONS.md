@@ -1,6 +1,6 @@
 # Operations
 
-Tento dokument obsahuje pouze stabilní provozní kontrakt. Aktuální změny, incidenty, rollout rozhodnutí a důkazy patří do Paperclip ticketu.
+Tento dokument obsahuje pouze stabilní provozní kontrakt. Aktuální změny, incidenty, rollout rozhodnutí a důkazy patří do příslušného issue.
 
 ## Prostředí
 
@@ -15,18 +15,18 @@ Health endpoint je vždy `/api/health`. Preview ani lokální vývoj nesmí pou�
 ## Vlastnictví systémů
 
 - Git: `https://github.com/drew2323/pgdenik`, výchozí branch `main`
-- Plánování a stav práce: Paperclip, projekt **PG Deník**
+- Plánování a stav práce: aktuální issue tracker, projekt **PG Deník**
 - CI: GitHub Actions, workflow `.github/workflows/ci.yml`
 - Runtime a preview: Coolify
 - Produkční aplikace v Coolify: UUID `accqwcih3fe5lapan5prkfmx`
 - Produkční PostgreSQL: UUID `j86ujwj5ipp6sg8mikhc8rsv`, databáze `pgdenik_prod`
 - Sdílená preview PostgreSQL: UUID `u3gp6y3q4whsnncdsucxnylb`, databáze `pgdenik_preview`
 
-Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři nebo Paperclip komentáři.
+Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři nebo komentáři issue trackeru.
 
 ## Delivery workflow
 
-1. Zadavatel vytvoří Paperclip ticket s outcome, scope a acceptance criteria.
+1. Zadavatel vytvoří issue; před předáním do vývoje musí mít outcome, scope a acceptance criteria.
 2. PM přiřadí jednoho agenta. Agent vytvoří branch s identifikátorem ticketu.
 3. Agent implementuje pouze ticket, průběžný stav a blockery píše do ticketu.
 4. U změny aplikace/runtime agent spustí `./scripts/quality.sh`; docs-only změna používá cílené kontroly popsané v `AGENTS.md`. Potom pushne branch a otevře draft PR.
@@ -42,7 +42,7 @@ Chybějící CI nebo preview je blocker review. Agent nesmí použít produkčn�
 Datový ticket není oprávnění k přímému zápisu do produkce. Povinné pořadí je:
 
 1. Ověřit, že žádné jiné aktivní preview review nepoužívá sdílenou preview DB.
-2. Dokumentovaným a ověřeným provozním postupem obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani Paperclipu.
+2. Dokumentovaným a ověřeným provozním postupem obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani issue trackeru.
 3. Zaznamenat do ticketu čas refreshu, zdrojové a cílové prostředí a nesenzitivní výsledek kontrol.
 4. Aplikovat reprodukovatelnou změnu pouze na preview DB a ověřit ji přes Coolify preview aplikaci.
 5. Předložit uživateli preview, očekávaný produkční zásah a rollback; vyžádat explicitní schválení produkčního kroku.

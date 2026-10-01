@@ -11,7 +11,7 @@ Osobní paraglidingový deník na `https://pgdenik.cz`. Veřejná část zobrazu
 - Vitest + Playwright
 - Docker image nasazovaný přes Coolify
 
-Aktuální chování a datový model určují kód, migrace a testy. Zadání změn, acceptance criteria, rozhodnutí a průběžný stav patří do projektu **PG Deník** v Paperclipu, nikoli do nových handoff/spec souborů v repozitáři.
+Aktuální chování a datový model určují kód, migrace a testy. Zadání změn, acceptance criteria, rozhodnutí a průběžný stav patří do issue trackeru projektu **PG Deník**, nikoli do nových handoff/spec souborů v repozitáři.
 
 ## Lokální spuštění
 
@@ -43,6 +43,6 @@ Před prací si přečti `AGENTS.md`. Stabilní informace o prostředích, previ
 
 Standardní tok je:
 
-`Paperclip ticket → samostatná branch → testy → PR + preview → lidské review → merge → produkce`
+`issue → samostatná branch → testy → PR + preview → lidské review → merge → produkce`
 
-Bez aktivního Paperclip ticketu se změna nezačíná. Produkční merge a deploy nikdy neschvaluje agent sám.
+Bez aktivního issue se změna nezačíná. Produkční merge a deploy nikdy neschvaluje agent sám.
