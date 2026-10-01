@@ -15,21 +15,9 @@ for command_name in git gh node corepack codex curl timeout python3 getent; do
 done
 corepack pnpm --version >/dev/null
 
-for required_file in SPEC.md ARCHITECTURE.md PROJECT-INFRASTRUCTURE.md WEB_PLATFORM.md AGENTS.md Dockerfile package.json pnpm-lock.yaml scripts/start.sh scripts/migrate.sh scripts/migrate.mjs scripts/quality.sh scripts/verify.sh scripts/verify-preview.sh scripts/verify-production.sh; do
+for required_file in README.md AGENTS.md docs/OPERATIONS.md Dockerfile package.json pnpm-lock.yaml scripts/start.sh scripts/migrate.sh scripts/migrate.mjs scripts/quality.sh scripts/verify.sh scripts/verify-preview.sh scripts/verify-production.sh; do
   [ -f "$required_file" ] || { printf 'preflight failed: missing %s\n' "$required_file" >&2; exit 1; }
 done
-
-validate_status() {
-  python3 -c 'import re,sys
-p,expected=sys.argv[1:]
-lines=open(p).read().splitlines()
-hits=[(i,m.group(1)) for i,line in enumerate(lines) if (m:=re.fullmatch(r"\*\*Status:\*\*\s*(\S+)\s*",line))]
-if len(hits)!=1: raise SystemExit(f"preflight failed: duplicate status or missing status in {p}")
-i,value=hits[0]
-if i>=10 or value!=expected: raise SystemExit(f"preflight failed: {p} status must be {expected}")' "$1" "$2"
-}
-validate_status SPEC.md SPEC_READY
-validate_status ARCHITECTURE.md ARCHITECTURE_READY
 
 gh auth status >/dev/null 2>&1 || { printf 'preflight failed: GitHub authentication unavailable\n' >&2; exit 1; }
 gh api user >/dev/null

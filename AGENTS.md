@@ -1,20 +1,18 @@
 # Agent Rules
 
-1. Před změnou přečti `SPEC.md`, `ARCHITECTURE.md`, `WEB_PLATFORM.md`, `PROJECT-INFRASTRUCTURE.md` a aktivní `DEVELOPMENT-HANDOFF.md`.
-2. Implementuj pouze scope schváleného Development Handoffu. Nejasnost nebo architektonickou odchylku vrať jako blocker.
-3. Implementation details rozhodni podle repozitáře; neměň schválenou high-level architekturu bez souhlasu.
-4. Pracuj na samostatné branchi. Nikdy necommituj secrets ani produkční data.
-5. Spusť relevantní testy, lint, typecheck a build. Selhání nezakrývej.
-6. Commitni změnu a vytvoř PR. Do výsledku uveď scope, gates, PR, preview a blockery.
-7. Produkci neměň přímo. Nasazení probíhá přes merge do `main` a Coolify.
-8. Neměň `Dockerfile`, deploy hooky, healthcheck ani prostředí bez výslovně schváleného infrastrukturního scope.
+1. **Paperclip ticket je jediný zdroj pravdy pro změnu.** Musí obsahovat outcome, scope, acceptance criteria a vlastníka. Handoff, průběžný stav, rozhodnutí a blockery zapisuj do ticketu; nevytvářej pro ně nové markdown dokumenty.
+2. Před zahájením přečti ticket a `README.md`. `docs/OPERATIONS.md` čti jen při změně runtime, dat, deploye nebo infrastruktury.
+3. Pracuj na samostatné branchi z aktuálního `main`; název musí obsahovat identifikátor ticketu (např. `codex/far-123-short-name`). Jeden ticket = jedna branch = jeden PR.
+4. Neměň nic mimo scope ticketu. Nutnou vedlejší změnu nejprve popiš v ticketu; bez schválení ji nedělej.
+5. Behaviorální změny vyvíjej test-first. U změn aplikace nebo runtime před předáním spusť `./scripts/quality.sh`. U docs-only změny stačí kontrola odkazů a formátu; u samostatné změny shell skriptu minimálně `sh -n <script>`. Vždy uveď přesně, co proběhlo a co ne; neúspěch neskrývej.
+6. PR musí odkazovat na Paperclip ticket a obsahovat: stručné shrnutí, testy, rizika a ověřenou Coolify preview URL. U čistě dokumentační změny napiš `Preview: not required (docs-only)`.
+7. Agent smí commitnout, pushnout a otevřít draft PR. Agent nesmí sám mergeovat, spouštět produkční deploy ani uzavřít ticket jako `done`.
+8. Po lidském review oprav připomínky na stejné branchi. Ticket jde do `done` až po schváleném merge a ověření produkce.
+9. Produkční data, tajemství, migrace, importy a změny Coolify vyžadují explicitní scope ticketu a rollback plán. Tajemství nikdy necommituj ani nevypisuj.
+10. Pokud je ticket nejasný nebo preview/CI nefunguje, zastav se a zapiš konkrétní blocker. Nerozšiřuj práci odhadem.
 
-<!-- BEGIN:nextjs-agent-rules -->
+<!-- BEGIN_NEXTJS_AGENT_RULES -->
+# Next.js: ALWAYS read the docs before coding
 
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+Before any Next.js work, find and read the relevant documentation in `node_modules/next/dist/docs/`. Your training data may be outdated — the bundled docs are the source of truth.
+<!-- END_NEXTJS_AGENT_RULES -->
