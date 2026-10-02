@@ -49,7 +49,7 @@ Datový ticket není oprávnění k přímému zápisu do produkce. Povinné po�
 6. Po schválení vytvořit čerstvou produkční zálohu, provést stejnou změnu v produkci a ověřit databázi i veřejnou aplikaci.
 7. Teprve po produkčním ověření lze ticket uzavřít.
 
-Pokud refresh postup není dostupný nebo nebyl pro projekt ověřen, ticket přejde do `blocked`. Agent nesmí místo preview použít produkci, odvodit souhlas pouze z formulace ticketu ani provést ad-hoc SQL zápis do produkce.
+Agent provede běžný bezpečný přesun aktuálních dat z produkční do preview databáze podle uvedeného pořadí a nesenzitivní výsledek zaznamená do issue. Pokud přesun skutečně selže nebo nelze bezpečně určit zdroj a cíl, zapíše blocker a důkazy přímo do issue, nastaví `blocked` a přiřadí stejné issue zpět PM/orchestrátorovi. Agent nesmí místo preview použít produkci, odvodit souhlas pouze z formulace issue ani provést ad-hoc SQL zápis do produkce.
 
 ## Runtime kontrakt
 
