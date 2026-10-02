@@ -42,10 +42,10 @@ Chybějící CI nebo preview je blocker review. Agent nesmí použít produkčn�
 Datový ticket není oprávnění k přímému zápisu do produkce. Povinné pořadí je:
 
 1. Ověřit, že žádné jiné aktivní preview review nepoužívá sdílenou preview DB.
-2. Dokumentovaným a ověřeným provozním postupem obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani issue trackeru.
+2. Obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani issue trackeru.
 3. Zaznamenat do ticketu čas refreshu, zdrojové a cílové prostředí a nesenzitivní výsledek kontrol.
 4. Aplikovat reprodukovatelnou změnu pouze na preview DB a ověřit ji přes Coolify preview aplikaci.
-5. Předložit uživateli preview, očekávaný produkční zásah a rollback; vyžádat explicitní schválení produkčního kroku.
+5. Předložit uživateli link na preview, očekávaný produkční zásah a rollback; vyžádat explicitní schválení produkčního kroku.
 6. Po schválení vytvořit čerstvou produkční zálohu, provést stejnou změnu v produkci a ověřit databázi i veřejnou aplikaci.
 7. Teprve po produkčním ověření lze ticket uzavřít.
 
