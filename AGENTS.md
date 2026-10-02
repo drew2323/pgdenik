@@ -10,7 +10,7 @@
 8. Po lidském review oprav připomínky na stejné branchi. Issue jde do `done` až po schváleném merge a ověření produkce.
 9. Produkční tajemství a změny Coolify vyžadují explicitní scope issue. Tajemství nikdy necommituj ani nevypisuj.
 10. U CMS nebo databázové změny nejprve dokumentovaným a ověřeným postupem synchronizuj izolovanou preview DB z produkce, změnu aplikuj pouze tam a ověř ji přes preview aplikaci. Samotné issue neopravňuje k produkčnímu zápisu. Ten smí proběhnout až po explicitním lidském schválení preview, s čerstvou zálohou, reprodukovatelným postupem, rollbackem a následným ověřením.
-11. Pokud je issue nejasné, preview/CI nefunguje nebo chybí ověřený refresh postup preview DB, zastav se a zapiš konkrétní blocker. Nerozšiřuj práci odhadem a neimprovizuj v produkci.
+11. Pokud je issue nejasné nebo preview/CI nefunguje, zastav se. Důvod, dosavadní důkazy a potřebný další krok zapiš přímo do issue (popis nebo trvalý komentář), nastav `blocked` a přiřaď stejné issue zpět PM/orchestrátorovi. Nestačí blocker uvést pouze ve shrnutí běhu nebo aktivitě. Nerozšiřuj práci odhadem a neimprovizuj v produkci.
 
 <!-- BEGIN_NEXTJS_AGENT_RULES -->
 # Next.js: ALWAYS read the docs before coding
