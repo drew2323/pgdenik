@@ -10,7 +10,7 @@ export default async function HomePage() {
   return (
     <article>
       <header className="article-header">
-        <p className="eyebrow">Paraglidingový zápisník</p>
+        <p className="eyebrow">Osobní paraglidingový deník</p>
         <h1>{page.title}</h1>
       </header>
       <ContentBlocks blocks={page.content} />
