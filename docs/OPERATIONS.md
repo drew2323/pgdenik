@@ -27,29 +27,29 @@ Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři neb
 ## Delivery workflow
 
 1. Zadavatel vytvoří issue; před předáním do vývoje musí mít outcome, scope a acceptance criteria.
-2. PM přiřadí jednoho agenta. Agent vytvoří branch s identifikátorem ticketu.
-3. Agent implementuje pouze ticket, průběžný stav a blockery píše do ticketu.
+2. Dev Lead přiřadí jednoho agenta. Agent vytvoří branch s identifikátorem issue.
+3. Agent implementuje pouze issue, průběžný stav a blockery píše do issue.
 4. U změny aplikace/runtime agent spustí `./scripts/quality.sh`; docs-only změna používá cílené kontroly popsané v `AGENTS.md`. Potom pushne branch a otevře draft PR.
-5. Coolify vytvoří izolované preview. Agent ověří `./scripts/verify.sh <preview-url>` a vloží URL i výsledek do PR a ticketu.
+5. Coolify vytvoří izolované preview. Agent ověří `./scripts/verify.sh <preview-url>` a vloží URL i výsledek do PR a issue.
 6. Člověk zkontroluje preview, diff, CI a rizika. Požadované opravy se dělají na stejné branchi.
 7. Pouze člověk schválí merge do `main`. Merge spustí produkční deployment v Coolify.
-8. Po deployi se ověří `./scripts/verify.sh https://pgdenik.cz`. Teprve potom se ticket uzavře jako `done`.
+8. Po deployi se ověří `./scripts/verify.sh https://pgdenik.cz`. Teprve potom se issue uzavře jako `done`.
 
 Chybějící CI nebo preview je blocker review. Agent nesmí použít produkční deploy jako náhradu preview.
 
 ## CMS a databázové změny
 
-Datový ticket není oprávnění k přímému zápisu do produkce. Povinné pořadí je:
+Datové issue není oprávnění k přímému zápisu do produkce. Povinné pořadí je:
 
 1. Ověřit, že žádné jiné aktivní preview review nepoužívá sdílenou preview DB.
 2. Obnovit preview DB z aktuální produkce. Zálohy a credentials nesmějí do GitHubu ani issue trackeru.
-3. Zaznamenat do ticketu čas refreshu, zdrojové a cílové prostředí a nesenzitivní výsledek kontrol.
+3. Zaznamenat do issue čas refreshu, zdrojové a cílové prostředí a nesenzitivní výsledek kontrol.
 4. Aplikovat reprodukovatelnou změnu pouze na preview DB a ověřit ji přes Coolify preview aplikaci.
 5. Předložit uživateli link na preview, očekávaný produkční zásah a rollback; vyžádat explicitní schválení produkčního kroku.
 6. Po schválení vytvořit čerstvou produkční zálohu, provést stejnou změnu v produkci a ověřit databázi i veřejnou aplikaci.
-7. Teprve po produkčním ověření lze ticket uzavřít.
+7. Teprve po produkčním ověření lze issue uzavřít.
 
-Agent provede běžný bezpečný přesun aktuálních dat z produkční do preview databáze podle uvedeného pořadí a nesenzitivní výsledek zaznamená do issue. Pokud přesun skutečně selže nebo nelze bezpečně určit zdroj a cíl, zapíše blocker a důkazy přímo do issue, nastaví `blocked` a přiřadí stejné issue zpět PM/orchestrátorovi. Agent nesmí místo preview použít produkci, odvodit souhlas pouze z formulace issue ani provést ad-hoc SQL zápis do produkce.
+Agent provede běžný bezpečný přesun aktuálních dat z produkční do preview databáze podle uvedeného pořadí a nesenzitivní výsledek zaznamená do issue. Pokud přesun skutečně selže nebo nelze bezpečně určit zdroj a cíl, zapíše blocker a důkazy přímo do issue, nastaví `blocked` a přiřadí stejné issue zpět Dev Leadovi. Agent nesmí místo preview použít produkci, odvodit souhlas pouze z formulace issue ani provést ad-hoc SQL zápis do produkce.
 
 ## Runtime kontrakt
 
@@ -72,7 +72,7 @@ Agent provede běžný bezpečný přesun aktuálních dat z produkční do prev
 ./scripts/migrate.sh
 ```
 
-`pnpm import:live` mění data a není součást běžného delivery workflow. Smí se spustit pouze z explicitního migračního ticketu se zálohou, cílovým prostředím a rollback plánem.
+`pnpm import:live` mění data a není součást běžného delivery workflow. Smí se spustit pouze z explicitního migračního issue se zálohou, cílovým prostředím a rollback plánem.
 
 ## Produkční bezpečnost
 
@@ -81,4 +81,4 @@ Agent provede běžný bezpečný přesun aktuálních dat z produkční do prev
 - Žádné produkční migrace, importy nebo datové zápisy před ověřením v synchronizované preview DB a následným explicitním lidským schválením.
 - Před schváleným produkčním datovým zásahem vždy vytvořit čerstvou zálohu a mít reprodukovatelný postup i rollback.
 - Rollback aplikace = předchozí úspěšný Coolify deployment.
-- Datový rollback se provádí jen podle konkrétního plánu v incidentním/migračním ticketu; aplikace se nevrací naslepo přes nevratnou databázovou migraci.
+- Datový rollback se provádí jen podle konkrétního plánu v incidentním/migračním issue; aplikace se nevrací naslepo přes nevratnou databázovou migraci.
