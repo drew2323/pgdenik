@@ -610,7 +610,7 @@ function removeGeneratedLeadingTOC(
     const clone = $(item).clone()
     clone.children('ul,ol').remove()
     const ownAnchors = clone.find('a[href^="#"]')
-    return ownAnchors.length === 1 && clone.text().trim() === ownAnchors.text().trim()
+    return ownAnchors.length >= 1 && clone.text().trim() === ownAnchors.text().trim()
   })
   if (allLinksTargetGeneratedHeadings && everyItemIsOnlyALink) first.remove()
 }
