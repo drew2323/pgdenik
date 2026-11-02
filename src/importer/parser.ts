@@ -610,7 +610,13 @@ function removeGeneratedLeadingTOC(
     const clone = $(item).clone()
     clone.children('ul,ol').remove()
     const ownAnchors = clone.find('a[href^="#"]')
-    return ownAnchors.length >= 1 && clone.text().trim() === ownAnchors.text().trim()
+    const nestedAnchors = $(item).children('ul,ol').find('a[href^="#"]')
+    const extraLinksRepeatNestedItems = ownAnchors.toArray().slice(1).every((anchor) =>
+      nestedAnchors.toArray().some((nested) =>
+        $(nested).attr('href') === $(anchor).attr('href') && $(nested).text() === $(anchor).text(),
+      ),
+    )
+    return ownAnchors.length >= 1 && extraLinksRepeatNestedItems && clone.text().trim() === ownAnchors.text().trim()
   })
   if (allLinksTargetGeneratedHeadings && everyItemIsOnlyALink) first.remove()
 }

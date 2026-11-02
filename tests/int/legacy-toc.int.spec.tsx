@@ -38,7 +38,7 @@ const body = [
   heading('HChild', 'Child'),
 ]
 const blocks = (leading = toc) => [
-  { blockType: 'richText', body: { root: node('root', [leading, ...body]) } },
+  { blockType: 'richText', body: { root: node('root', [leading, ...structuredClone(body)]) } },
 ]
 const render = (content: unknown) =>
   renderToStaticMarkup(
@@ -77,6 +77,14 @@ describe('historical generated TOC', () => {
     list([item([link('HChild', 'Child')])]),
   ])('preserves authored lists and partial/reordered/relabeled anchor lists', (leading) => {
     expect(render(blocks(leading))).toContain('<ul')
+  })
+
+  it('preserves an authored multi-link item during import', () => {
+    const parsed = parseSourcePage(
+      '<div id="xwikicontent"><ul><li><a href="#HParent">Parent</a><a href="#HChild">Child</a></li></ul><h1 class="wikigeneratedid" id="HParent">Parent</h1><h2 class="wikigeneratedid" id="HChild">Child</h2></div>',
+      'https://www.pgdenik.cz/xwiki/bin/view/Tipy/Test/',
+    )
+    expect(JSON.stringify(sourcePageToLexical(parsed.page))).toContain('"type":"list"')
   })
 
   it('removes the same malformed list during import, preserving following content', () => {
