@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { RichText, type JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
 import { validateEmbedURL } from '@/lib/content'
+import { withoutLegacyTOC } from '@/lib/legacy-toc'
 import type { Page } from '@/payload-types'
 
 const richTextConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
@@ -18,7 +19,7 @@ const richTextConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
 export function ContentBlocks({ blocks }: { blocks: Page['content'] }) {
   return (
     <>
-      {blocks?.map((block, index) => {
+      {withoutLegacyTOC(blocks)?.map((block, index) => {
         if (block.blockType === 'richText')
           return (
             <RichText

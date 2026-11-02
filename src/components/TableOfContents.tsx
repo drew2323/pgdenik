@@ -1,3 +1,4 @@
+import { withoutLegacyTOC } from '@/lib/legacy-toc'
 import type { Page } from '@/payload-types'
 
 type Heading = { anchor: string; level: number; text: string; children: Heading[] }
@@ -19,7 +20,7 @@ function collect(nodes: LexicalNode[], headings: Heading[]) {
 
 export function tableOfContentsFromBlocks(blocks: Page['content']): Heading[] {
   const flat: Heading[] = []
-  for (const block of blocks || []) {
+  for (const block of withoutLegacyTOC(blocks) || []) {
     if (block.blockType !== 'richText') continue
     const root = block.body?.root as unknown as LexicalNode | undefined
     collect(root?.children || [], flat)
