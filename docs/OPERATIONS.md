@@ -29,8 +29,8 @@ Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři neb
 3. Agent implementuje pouze issue, průběžný stav a blockery píše do issue.
 4. U změny aplikace/runtime agent spustí `./scripts/quality.sh`; docs-only změna používá cílené kontroly popsané v `AGENTS.md`. Potom pushne branch a otevře draft PR.
 5. Coolify vytvoří izolované preview. Agent ověří `./scripts/verify.sh <preview-url>` a vloží URL i výsledek do PR a issue.
-6. Člověk zkontroluje preview, diff, CI a rizika. Požadované opravy se dělají na stejné branchi.
-7. Pouze člověk schválí merge do `main`. Merge spustí produkční deployment v Coolify.
+6. Při `merge: review` člověk zkontroluje preview, diff, CI a rizika. Požadované opravy se dělají na stejné branchi.
+7. Merge do `main` podle `.github/agent.yml` (`auto`: agent po zeleném CI a ověřeném preview; `review`: člověk). Merge spustí produkční deployment v Coolify.
 8. Po deployi se ověří `./scripts/verify.sh https://pgdenik.cz`. Teprve potom se issue uzavře jako `done`.
 
 Chybějící CI nebo preview je blocker review. Agent nesmí použít produkční deploy jako náhradu preview.
