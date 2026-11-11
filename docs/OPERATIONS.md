@@ -17,10 +17,8 @@ Health endpoint je vždy `/api/health`. Preview ani lokální vývoj nesmí pou�
 - Git: `https://github.com/drew2323/pgdenik`, výchozí branch `main`
 - Plánování a stav práce: aktuální issue tracker, projekt **PG Deník**
 - CI: GitHub Actions, workflow `.github/workflows/ci.yml`
-- Runtime a preview: Coolify
-- Produkční aplikace v Coolify: UUID `accqwcih3fe5lapan5prkfmx`
-- Produkční PostgreSQL: UUID `j86ujwj5ipp6sg8mikhc8rsv`, databáze `pgdenik_prod`
-- Sdílená preview PostgreSQL: UUID `u3gp6y3q4whsnncdsucxnylb`, databáze `pgdenik_preview`
+- Runtime a preview: Coolify; produkční PostgreSQL (`pgdenik_prod`) a sdílená preview PostgreSQL (`pgdenik_preview`) jsou samostatné Coolify databáze.
+- Konkrétní instance (Coolify aplikace, databáze, server, interní URL) nejsou v repu: zjistí se v Coolify podle repa (`coolify where <app>`). Repo je public.
 
 Přístupy a secrets jsou v příslušných systémech, nikdy v repozitáři nebo komentáři issue trackeru.
 
