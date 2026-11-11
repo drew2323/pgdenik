@@ -1,0 +1,5 @@
+# Agent settings (agent-dispatch). Keys: runtime pi|hermes, model opus|sonnet, merge auto|review.
+# Issue labels (runtime:*, model:*, merge:review) override these.
+runtime: pi
+model: opus
+merge: auto     # agent merges its own PR after green CI + verified preview; merging deploys
